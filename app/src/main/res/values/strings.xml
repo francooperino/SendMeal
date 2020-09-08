@@ -1,3 +1,12 @@
 <resources>
-    <string name="app_name">Lab1AppMoviles</string>
+    <string name="app_name">SendMeal</string>
+    <string name="campoNombre">Nombre</string>
+    <string name="campoContra">Contraseña</string>
+    <string name="campoRepContra">Repetir contraseña</string>
+    <string name="campoMail">Email</string>
+    <string name="tarjeta">Tipo de tarjeta:</string>
+    <string name="tarjetaDebito">Debito</string>
+    <string name="tarjetaCredito">Credito</string>
+    <string name="numeroTarjeta">Numero de tarjeta</string>
+    <string name="CCV">CCV</string>
 </resources>
