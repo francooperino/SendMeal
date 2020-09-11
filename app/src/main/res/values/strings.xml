@@ -9,4 +9,11 @@
     <string name="tarjetaCredito">Credito</string>
     <string name="numeroTarjeta">Numero de tarjeta</string>
     <string name="CCV">CCV</string>
+    <string name="fechaVenc">Fecha vencimiento</string>
+    <string name="cbu">CBU</string>
+    <string name="alias">Alias CBU</string>
+    <string name="cargaInicial">Realizar carga inicial?</string>
+
+
+
 </resources>
