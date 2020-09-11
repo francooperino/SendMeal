@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.SeekBar;
 import android.widget.Switch;
@@ -14,7 +16,8 @@ public class MainActivity extends AppCompatActivity {
     private SeekBar barra;
     private TextView valorActual, campoCredito;
     private Switch switchCarga;
-
+    private CheckBox checkTerminos;
+    private Button registrar;
     String valor;
 
     @Override
@@ -25,7 +28,8 @@ public class MainActivity extends AppCompatActivity {
         barra = (SeekBar) findViewById(R.id.barrita);
         switchCarga = findViewById(R.id.switchCarga);
         campoCredito = findViewById(R.id.campoCredito);
-
+        checkTerminos = findViewById(R.id.checkTerminos);
+        registrar = findViewById(R.id.buttonRegistrar);
         valorActual = (TextView) findViewById(R.id.textito);
 
         valor = String.valueOf(barra.getProgress());
@@ -68,6 +72,20 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        checkTerminos.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                if(isChecked){
+                    registrar.setEnabled(true);
+
+                }
+                else {
+                    registrar.setEnabled(false);
+
+                }
+            }
+        });
+
 
     }
 
