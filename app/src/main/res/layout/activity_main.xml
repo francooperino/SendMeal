@@ -8,7 +8,7 @@
     tools:context=".MainActivity">
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/textNombre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -16,7 +16,7 @@
         android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/textContrasena"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -24,7 +24,7 @@
         android:inputType="textPassword" />
 
     <EditText
-        android:id="@+id/editTextTextPassword2"
+        android:id="@+id/textcontrasena2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -32,7 +32,7 @@
         android:inputType="textPassword" />
 
     <EditText
-        android:id="@+id/editTextTextEmailAddress"
+        android:id="@+id/textCorreo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -46,19 +46,21 @@
         android:text="@string/tarjeta" />
 
     <RadioGroup
+        android:id="@+id/radioGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:checkedButton="@id/radioDebito"
         android:orientation="horizontal">
 
         <RadioButton
-            android:id="@+id/radioButton4"
+            android:id="@+id/radioDebito"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/tarjetaDebito" />
 
         <RadioButton
-            android:id="@+id/radioButton3"
+            android:id="@+id/radioCredito"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -71,7 +73,7 @@
         android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/editTextNumber8"
+            android:id="@+id/textNumeroTarjeta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -80,11 +82,12 @@
             android:inputType="number" />
 
         <EditText
-            android:id="@+id/editTextNumber9"
+            android:id="@+id/textCCV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1.6"
             android:ems="10"
+            android:enabled="false"
             android:hint="@string/CCV"
             android:inputType="number" />
     </LinearLayout>
@@ -101,7 +104,7 @@
         android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/editTextNumber3"
+            android:id="@+id/textMesVenc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -109,7 +112,7 @@
             android:inputType="number" />
 
         <EditText
-            android:id="@+id/editTextNumber4"
+            android:id="@+id/textAnioVenc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -118,7 +121,7 @@
     </LinearLayout>
 
     <EditText
-        android:id="@+id/editTextNumber5"
+        android:id="@+id/textCBU"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -126,7 +129,7 @@
         android:inputType="number" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/textAliasCBU"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -144,7 +147,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:max="1500"
-        android:min="0"
+        android:min="1"
         android:visibility="gone" />
 
     <LinearLayout
