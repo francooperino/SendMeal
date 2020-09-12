@@ -19,6 +19,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Calendar;
+import java.util.Date;
+import java.util.TimeZone;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -157,6 +159,7 @@ public class MainActivity extends AppCompatActivity {
 
             if (!isValidEmail(correoElectronico.getText().toString())) {
                 correoElectronico.setError("El correo electronico no es valido");
+
             }
             if (numeroTarjeta.getText().toString().isEmpty()) {
                 numeroTarjeta.setError("No puede estar vacio el "+numeroTarjeta.getHint());
@@ -187,27 +190,25 @@ public class MainActivity extends AppCompatActivity {
 
             if(tipoTarjeta.getText().toString().equals("Credito")){
 
-                Calendar cal = Calendar.getInstance();
-                Calendar vencimiento = Calendar.getInstance();
-                //long fechaActual = cal.getTimeInMillis();
-               // int diaActual = cal.get(Calendar.DAY_OF_MONTH);
-                cal.add(Calendar.DATE,90);
+                Calendar calendar = Calendar.getInstance();
+                calendar.add(Calendar.MONTH, 4);
+
                 Integer mesVencimiento = Integer.parseInt(mesVenc.getText().toString());
                 Integer anioVencimiento = Integer.parseInt(anioVenc.getText().toString());
+
+                Calendar vencimiento = Calendar.getInstance();
 
                 vencimiento.set(Calendar.YEAR,anioVencimiento);
                 vencimiento.set(Calendar.MONTH,mesVencimiento);
                 vencimiento.set(Calendar.DATE,vencimiento.getActualMaximum(Calendar.DATE));
 
-                if(cal.before(vencimiento)){
-                    Toast toast2 = Toast.makeText(getApplicationContext(),"tarjeta supera 3 meses desde la fecha"+vencimiento.get(Calendar.DATE)+""+vencimiento.get(Calendar.MONTH)+""+vencimiento.get(Calendar.YEAR), Toast.LENGTH_LONG);
-                    Toast toast3 = Toast.makeText(getApplicationContext(),"fecha con 3 meses mas "+cal.get(Calendar.DATE)+""+cal.get(Calendar.MONTH)+""+cal.get(Calendar.YEAR), Toast.LENGTH_LONG);
+
+
+                if(!calendar.before(vencimiento)){
+                    Toast toast2 = Toast.makeText(getApplicationContext(),"Su tarjeta ya venció o vence pronto, intente con otra", Toast.LENGTH_LONG);
                     toast2.show();
-                    toast3.show();
-                   // tipoTarjeta.setError("la tarjeta no esta vencida");
                 };
             }}}
-
 
         }
     private static boolean isValidEmail(String email) {
