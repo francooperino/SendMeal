@@ -4,184 +4,306 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradiente"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <EditText
-        android:id="@+id/textNombre"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/campoNombre"
-        android:inputType="textPersonName" />
+        android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/textContrasena"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/campoContra"
-        android:inputType="textPassword" />
 
-    <EditText
-        android:id="@+id/textcontrasena2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/campoRepContra"
-        android:inputType="textPassword" />
-
-    <EditText
-        android:id="@+id/textCorreo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/campoMail"
-        android:inputType="textEmailAddress" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/tarjeta" />
-
-    <RadioGroup
-        android:id="@+id/radioGroup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:checkedButton="@id/radioDebito"
-        android:orientation="horizontal">
-
-        <RadioButton
-            android:id="@+id/radioDebito"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/tarjetaDebito" />
-
-        <RadioButton
-            android:id="@+id/radioCredito"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/tarjetaCredito" />
-    </RadioGroup>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/textNumeroTarjeta"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:hint="@string/numeroTarjeta"
-            android:inputType="number" />
+            android:orientation="vertical"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
 
-        <EditText
-            android:id="@+id/textCCV"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1.6"
-            android:ems="10"
-            android:enabled="false"
-            android:hint="@string/CCV"
-            android:inputType="number" />
-    </LinearLayout>
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/fechaVenc" />
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="149dp"
+                android:adjustViewBounds="false"
+                android:scaleType="center"
+                app:srcCompat="@drawable/sendmeal" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat"
+                android:gravity="center_horizontal"
+                android:text="@string/bienv"
+                android:textColor="@color/blanco_campos_medium"
+                android:textSize="25sp" />
 
-        <EditText
-            android:id="@+id/textMesVenc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="number" />
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat"
+                android:gravity="center_horizontal"
+                android:text="@string/bienv2"
+                android:textColor="@color/blanco_campos_medium"
+                android:textSize="16sp" />
 
-        <EditText
-            android:id="@+id/textAnioVenc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="number" />
-    </LinearLayout>
 
-    <EditText
-        android:id="@+id/textCBU"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/cbu"
-        android:inputType="number" />
+            <EditText
+                android:id="@+id/textNombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat"
+                android:hint="@string/campoNombre"
+                android:inputType="textPersonName"
+                android:textColorHint="@color/blanco_campos"
+                android:layout_marginTop="10dp"
+                android:padding="8dp"
+                android:background="@drawable/edittext_background"/>
 
-    <EditText
-        android:id="@+id/textAliasCBU"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/alias"
-        android:inputType="textPersonName" />
+            <EditText
+                android:id="@+id/textContrasena"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat"
+                android:hint="@string/campoContra"
+                android:inputType="textPassword"
+                android:textColorHint="@color/blanco_campos"
+                android:padding="8dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edittext_background"/>
 
-    <Switch
-        android:id="@+id/switchCarga"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/cargaInicial" />
+            <EditText
+                android:id="@+id/textcontrasena2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:fontFamily="@font/montserrat"
+                android:hint="@string/campoRepContra"
+                android:inputType="textPassword"
+                android:textColorHint="@color/blanco_campos"
+                android:padding="8dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edittext_background" />
 
-    <SeekBar
-        android:id="@+id/barrita"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:max="1500"
-        android:min="1"
-        android:visibility="gone" />
+            <EditText
+                android:id="@+id/textCorreo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:fontFamily="@font/montserrat"
+                android:hint="@string/campoMail"
+                android:inputType="textEmailAddress"
+                android:textColorHint="@color/blanco_campos"
+                android:padding="8dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edittext_background"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:orientation="horizontal">
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat"
+                android:text="@string/tarjeta"
+                android:textColor="@color/blanco_campos"
+                android:layout_marginTop="10dp"/>
 
-        <TextView
-            android:id="@+id/campoCredito"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/cargaInicial2"
-            android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/textito"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone" />
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checkedButton="@id/radioDebito"
+                android:orientation="horizontal">
 
-    </LinearLayout>
+                <RadioButton
+                    android:id="@+id/radioDebito"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/montserrat"
+                    android:text="@string/tarjetaDebito"
+                    android:textColor="@color/blanco_campos">
 
-    <CheckBox
-        android:id="@+id/checkTerminos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/terminosYCondiciones" />
+                </RadioButton>
 
-    <Button
-        android:id="@+id/buttonRegistrar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:enabled="false"
-        android:text="@string/botonRegistro" />
+                <RadioButton
+                    android:id="@+id/radioCredito"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/montserrat"
+                    android:text="@string/tarjetaCredito"
+                    android:textColor="@color/blanco_campos">
+
+                </RadioButton>
+            </RadioGroup>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/textNumeroTarjeta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:fontFamily="@font/montserrat"
+                    android:hint="@string/numeroTarjeta"
+                    android:inputType="number"
+                    android:textColorHint="@color/blanco_campos"
+                    android:layout_marginRight="10dp"
+                    android:padding="8dp"
+                    android:background="@drawable/edittext_background"/>
+
+                <EditText
+                    android:id="@+id/textCCV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.6"
+                    android:ems="10"
+                    android:enabled="false"
+                    android:fontFamily="@font/montserrat"
+                    android:hint="@string/CCV"
+                    android:inputType="number"
+                    android:textColorHint="@color/blanco_campos"
+                    android:padding="8dp"
+                    android:background="@drawable/edittext_background"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat"
+                android:text="@string/fechaVenc"
+                android:textColor="@color/blanco_campos"
+                android:layout_marginTop="10dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/textMesVenc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:fontFamily="@font/montserrat"
+                    android:inputType="number"
+                    android:padding="8dp"
+                    android:hint="Mes"
+                    android:textColorHint="@color/blanco_campos"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/edittext_background"/>
+
+                <EditText
+                    android:id="@+id/textAnioVenc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:fontFamily="@font/montserrat"
+                    android:inputType="number"
+                    android:hint="Año"
+                    android:textColorHint="@color/blanco_campos"
+                    android:padding="8dp"
+                    android:background="@drawable/edittext_background"/>
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/textCBU"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:fontFamily="@font/montserrat"
+                android:hint="@string/cbu"
+                android:inputType="number"
+                android:padding="8dp"
+                android:textColorHint="@color/blanco_campos"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/edittext_background"/>
+
+            <EditText
+                android:id="@+id/textAliasCBU"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:fontFamily="@font/montserrat"
+                android:hint="@string/alias"
+                android:inputType="textPersonName"
+                android:padding="8dp"
+                android:textColorHint="@color/blanco_campos"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edittext_background"/>
+
+            <Switch
+                android:id="@+id/switchCarga"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/montserrat"
+                android:includeFontPadding="false"
+                android:text="@string/cargaInicial"
+                android:textColor="@color/blanco_campos" />
+
+            <SeekBar
+                android:id="@+id/barrita"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="1500"
+                android:min="1"
+                android:visibility="gone"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/campoCredito"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat"
+                    android:textColor="@color/blanco_campos"
+                    android:text="@string/cargaInicial2"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/textito"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat"
+                    android:textColor="@color/blanco_campos_medium"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+            <CheckBox
+                android:id="@+id/checkTerminos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat"
+                android:textColor="@color/blanco_campos"
+                android:text="@string/terminosYCondiciones" />
+
+            <Button
+                android:id="@+id/buttonRegistrar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:fontFamily="@font/montserrat"
+                android:text="@string/botonRegistro"
+                android:layout_marginTop="10dp"/>
+
+        </LinearLayout>
+
+    </ScrollView>
 
 
 </LinearLayout>

@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">SendMeal</string>
+    <string name="bienv">Bienvenido</string>
+    <string name="bienv2">Registrate para empezar a pedir!</string>
+
     <string name="campoNombre">Nombre</string>
     <string name="campoContra">Contraseña</string>
     <string name="campoRepContra">Repetir contraseña</string>
@@ -9,7 +12,7 @@
     <string name="tarjetaCredito">Credito</string>
     <string name="numeroTarjeta">Numero de tarjeta</string>
     <string name="CCV">CCV</string>
-    <string name="fechaVenc">Fecha vencimiento</string>
+    <string name="fechaVenc">Fecha de vencimiento:</string>
     <string name="cbu">CBU</string>
     <string name="alias">Alias CBU</string>
     <string name="cargaInicial">Realizar carga inicial?</string>
