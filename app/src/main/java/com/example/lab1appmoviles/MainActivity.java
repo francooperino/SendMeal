@@ -1,11 +1,13 @@
 package com.example.lab1appmoviles;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -39,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText mesVenc;
     private EditText anioVenc;
     String valor;
+    Toolbar myToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
         mesVenc = findViewById(R.id.textMesVenc);
         anioVenc = findViewById(R.id.textAnioVenc);
         radioTarjeta = findViewById(R.id.radioGroup);
+        myToolbar = findViewById(R.id.toolbarMainActivity);
 
         valor = String.valueOf(barra.getProgress());
 
@@ -152,7 +156,33 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        myToolbar = findViewById(R.id.toolbarMainActivity);
+        setSupportActionBar(myToolbar);
+
+        //para mostrar icono flecha atrás
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+
     }
+
+
+
+    //para aplicar funcionalidad flecha atrás
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
+
 
 
     public void validarCampos(View v){

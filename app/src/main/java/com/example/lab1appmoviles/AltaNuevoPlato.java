@@ -1,6 +1,8 @@
 package com.example.lab1appmoviles;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,21 +18,23 @@ public class AltaNuevoPlato extends AppCompatActivity {
         toolbarOpcion2 = findViewById(R.id.toolbar2);
         setSupportActionBar(toolbarOpcion2);
 
+        //para mostrar icono flecha atrás
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
 
     }
 
+    //para aplicar funcionalidad flecha atrás
     @Override
-    public boolean onSupportNavigateUp() {
-        onBackPressed();
-        return false;
-    }
-    toolbarOpcion2.setNavigationIcon(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
-
-    toolbarOpcion2.setNavigationOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
         }
-    });
+
+        return super.onOptionsItemSelected(item);
+    }
+
 }
