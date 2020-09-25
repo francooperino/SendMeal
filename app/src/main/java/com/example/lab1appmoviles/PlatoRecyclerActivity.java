@@ -23,6 +23,7 @@ public class PlatoRecyclerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         toolbarOpcionPlatos = findViewById(R.id.toolbarRecycler);
         setContentView(R.layout.activity_recycler_plato);
+        toolbarOpcionPlatos = findViewById(R.id.toolbarRecycler);
         daoPlato = new DaoPlatos();
         setSupportActionBar(toolbarOpcionPlatos);
         //para mostrar icono flecha atrás

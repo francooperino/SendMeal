@@ -23,11 +23,5 @@
         app:showAsAction="never"
         ></item>
 
-    <item
-        android:id="@+id/opcion4"
-        android:title="Lista de Items"
-        android:orderInCategory="4"
-        app:showAsAction="always"
-        ></item>
 
 </menu>
