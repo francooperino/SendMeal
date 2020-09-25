@@ -24,19 +24,20 @@
         android:textSize="30sp" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/Titulo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Titulo" />
+        android:hint="Titulo"
+        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+         />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/Descripcion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz,._-"
         android:hint="Descripcion" />
 
     <LinearLayout
@@ -44,16 +45,16 @@
         android:layout_height="85dp">
 
         <EditText
-            android:id="@+id/editTextNumber"
+            android:id="@+id/Precio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
             android:hint="Precio"
-            android:inputType="number" />
+            android:inputType="number|numberDecimal" />
 
         <EditText
-            android:id="@+id/editTextNumber2"
+            android:id="@+id/Calorias"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -64,7 +65,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/buttonSave"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="GUARDAR" />

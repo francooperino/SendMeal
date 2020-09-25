@@ -49,7 +49,9 @@ public class HomeActivity extends AppCompatActivity {
                 //Toast.makeText(this,"Click en opcion Crear Items",Toast.LENGTH_LONG).show();
                 break;
             case R.id.opcion3:
-                Toast.makeText(this,"Click en opcion Lista de Items",Toast.LENGTH_LONG).show();
+                Intent g = new Intent(HomeActivity.this, PlatoRecyclerActivity.class);
+                startActivity(g);
+                //Toast.makeText(this,"Click en opcion Lista de Items",Toast.LENGTH_LONG).show();
                 break;
         }
         return super.onOptionsItemSelected(item);
