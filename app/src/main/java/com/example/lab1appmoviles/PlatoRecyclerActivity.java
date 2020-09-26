@@ -2,6 +2,7 @@ package com.example.lab1appmoviles;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.animation.AccelerateInterpolator;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -29,6 +30,7 @@ public class PlatoRecyclerActivity extends AppCompatActivity {
         //para mostrar icono flecha atrás
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        //getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         //String datoGenero = getIntent().getExtras().getString("GENERO");
         recyclerView = (RecyclerView) findViewById(R.id.recyclerPlato);

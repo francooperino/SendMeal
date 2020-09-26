@@ -157,12 +157,12 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        myToolbar = findViewById(R.id.toolbarMainActivity);
         setSupportActionBar(myToolbar);
 
         //para mostrar icono flecha atrás
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        //getSupportActionBar().setDisplayShowTitleEnabled(false);
 
 
     }

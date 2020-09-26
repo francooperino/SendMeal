@@ -16,19 +16,19 @@ public class DaoPlatos {
     private void iniciar(){
         if(platos.isEmpty()){
 
-            platos.add(new Plato("milanesa", "dgdgdgdg", 56, 92.0));
-            platos.add(new Plato("albondigas", "dgdgdgdg", 56, 56.0));
-            platos.add(new Plato("sushi", "dgdgdgdg", 56, 145.0));
-            platos.add(new Plato("asado", "dgdgdgdg", 56, 200.0));
-            platos.add(new Plato("fideos", "dgdgdgdg", 56, 36.0));
-            platos.add(new Plato("lasagna", "dgdgdgdg", 56, 89.0));
-            platos.add(new Plato("pizza", "dgdgdgdg", 56, 178.0));
-            platos.add(new Plato("calzone", "dgdgdgdg", 56, 99.0));
-            platos.add(new Plato("ravioles", "dgdgdgdg", 56, 123.0));
-            platos.add(new Plato("napolitana", "dgdgdgdg", 56, 180.0));
-            platos.add(new Plato("empanada", "dgdgdgdg", 56, 69.0));
-            platos.add(new Plato("pescado", "dgdgdgdg", 56, 263.0));
-            platos.add(new Plato("fugazetta", "dgdgdgdg", 56, 300.0));
+            platos.add(new Plato("Milanesa", "dgdgdgdg", 56, 92.0));
+            platos.add(new Plato("Albondigas", "dgdgdgdg", 56, 56.0));
+            platos.add(new Plato("Sushi", "dgdgdgdg", 56, 145.0));
+            platos.add(new Plato("Asado", "dgdgdgdg", 56, 200.0));
+            platos.add(new Plato("Fideos", "dgdgdgdg", 56, 36.0));
+            platos.add(new Plato("Lasagna", "dgdgdgdg", 56, 89.0));
+            platos.add(new Plato("Pizza", "dgdgdgdg", 56, 178.0));
+            platos.add(new Plato("Calzone", "dgdgdgdg", 56, 99.0));
+            platos.add(new Plato("Ravioles", "dgdgdgdg", 56, 123.0));
+            platos.add(new Plato("Napolitana", "dgdgdgdg", 56, 180.0));
+            platos.add(new Plato("Empanada", "dgdgdgdg", 56, 69.0));
+            platos.add(new Plato("Pescado", "dgdgdgdg", 56, 263.0));
+            platos.add(new Plato("Fugazetta", "dgdgdgdg", 56, 300.0));
         }
     }
 

@@ -5,94 +5,109 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradiente"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:paddingLeft="20dp"
-    android:paddingRight="20dp">>
+    android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar2"
         android:layout_width="409dp"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
+        android:background="@null"
         android:minHeight="?attr/actionBarSize"
-        app:title="Send Meal"
         android:theme="?attr/actionBarTheme" />
 
 
-    <TextView
-        android:id="@+id/textView5"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/montserrat"
-        android:gravity="center_horizontal"
-        android:textColor="@color/blanco_campos_medium"
-        android:text="Nuevo Plato"
-        android:textSize="30sp" />
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">>
 
-    <EditText
-        android:id="@+id/Titulo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/montserrat"
-        android:hint="Titulo"
-        android:textColorHint="@color/blanco_campos"
-        android:layout_marginTop="10dp"
-        android:padding="8dp"
-        android:background="@drawable/edittext_background"
-        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-         />
+        <TextView
+            android:id="@+id/NuevoPlato"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center_horizontal"
+            android:text="@string/NuevoPlato"
+            android:textColor="@color/blanco_campos_medium"
+            android:textSize="30sp" />
 
-    <EditText
-        android:id="@+id/Descripcion"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/montserrat"
-        android:textColorHint="@color/blanco_campos"
-        android:layout_marginTop="10dp"
-        android:padding="8dp"
-        android:background="@drawable/edittext_background"
-        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz,._-"
-        android:hint="Descripcion" />
+        <EditText
+            android:id="@+id/Titulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edittext_background"
+            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+            android:fontFamily="@font/montserrat"
+            android:hint="@string/TituloPlato"
+            android:padding="8dp"
+            android:textColorHint="@color/blanco_campos" />
+
+        <EditText
+            android:id="@+id/Descripcion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edittext_background"
+            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz,._-"
+            android:fontFamily="@font/montserrat"
+            android:hint="@string/DescripcionPlato"
+            android:padding="8dp"
+            android:textColorHint="@color/blanco_campos" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="85dp">
+        android:layout_height="85dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">>
 
         <EditText
             android:id="@+id/Precio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:fontFamily="@font/montserrat"
-            android:textColorHint="@color/blanco_campos"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
-            android:padding="8dp"
+            android:layout_weight="1"
             android:background="@drawable/edittext_background"
-            android:hint="Precio"
-            android:inputType="number|numberDecimal" />
+            android:ems="10"
+            android:fontFamily="@font/montserrat"
+            android:hint="@string/PrecioPlato"
+            android:inputType="number|numberDecimal"
+            android:padding="8dp"
+            android:textColorHint="@color/blanco_campos" />
 
         <EditText
             android:id="@+id/Calorias"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:layout_weight="1"
+            android:background="@drawable/edittext_background"
             android:ems="10"
             android:fontFamily="@font/montserrat"
-            android:textColorHint="@color/blanco_campos"
-            android:layout_marginTop="10dp"
+            android:hint="@string/CaloriasPlato"
+            android:inputType="number"
             android:padding="8dp"
-            android:background="@drawable/edittext_background"
-            android:hint="Calorias"
-            android:inputType="number" />
+            android:textColorHint="@color/blanco_campos" />
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/buttonSave"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="GUARDAR" />
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">>
+
+        <Button
+            android:id="@+id/buttonSave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/GuardarPlato" />
+    </LinearLayout>
 
 </LinearLayout>

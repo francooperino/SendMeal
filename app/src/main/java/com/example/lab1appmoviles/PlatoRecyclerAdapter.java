@@ -53,7 +53,7 @@ public class PlatoRecyclerAdapter extends RecyclerView.Adapter<PlatoRecyclerAdap
         Plato plato = mDataset.get(position);
         holder.imgPlato.setImageResource(R.drawable.milanga);
         holder.tituloPlato.setText(plato.getTitulo());
-        holder.precioPlato.setText(plato.getPrecio().toString());
+        holder.precioPlato.setText("Precio: $"+plato.getPrecio().toString());
     }
 
     @Override

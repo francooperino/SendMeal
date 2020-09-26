@@ -35,6 +35,7 @@ public class AltaNuevoPlato extends AppCompatActivity {
         //para mostrar icono flecha atrás
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         btnSave.setOnClickListener(new View.OnClickListener(){
 

@@ -12,8 +12,9 @@
         android:id="@+id/toolbarMainActivity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
+        android:background="@null"
         android:minHeight="?attr/actionBarSize"
+        app:title="@string/Registro"
         android:theme="?attr/actionBarTheme" />
 
     <ScrollView
@@ -28,24 +29,6 @@
             android:paddingLeft="20dp"
             android:paddingRight="20dp">
 
-
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="match_parent"
-                android:layout_height="149dp"
-                android:adjustViewBounds="false"
-                android:scaleType="center"
-                app:srcCompat="@drawable/sendmeal" />
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/montserrat"
-                android:gravity="center_horizontal"
-                android:text="@string/bienv"
-                android:textColor="@color/blanco_campos_medium"
-                android:textSize="25sp" />
 
             <TextView
                 android:id="@+id/textView4"

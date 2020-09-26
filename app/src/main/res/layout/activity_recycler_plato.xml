@@ -5,14 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/gradiente"
     tools:context=".PlatoRecyclerActivity">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarRecycler"
         android:layout_width="409dp"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
+        android:background="@null"
+        app:title="@string/ListaPlatos"
         android:minHeight="?attr/actionBarSize"
-        app:title="Send Meal"
         android:theme="?attr/actionBarTheme" />
 
     <androidx.recyclerview.widget.RecyclerView
