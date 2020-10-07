@@ -11,17 +11,14 @@
 
     <item
         android:id="@+id/opcion2"
-        android:title="Crear Items"
         android:orderInCategory="4"
-        app:showAsAction="never"
-        ></item>
-
+        android:title="Crear Items"
+        app:showAsAction="never"></item>
     <item
         android:id="@+id/opcion3"
-        android:title="Lista de Items"
         android:orderInCategory="4"
-        app:showAsAction="never"
-        ></item>
+        android:title="Lista de Items"
+        app:showAsAction="never"></item>
 
 
 </menu>

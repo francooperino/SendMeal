@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradiente"
+    android:orientation="vertical"
+    tools:context=".PedidoActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarPedido"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:minHeight="?attr/actionBarSize"
+        app:title="@string/NuevoPedido"
+        android:theme="?attr/actionBarTheme" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="599dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
+
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="199dp"
+                android:layout_height="213dp"
+                android:layout_gravity="center"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/camarero" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat"
+                android:gravity="center_horizontal"
+                android:padding="8dp"
+                android:text="@string/infoPedido"
+                android:textColor="@color/blanco_campos_medium"
+                android:textSize="16sp" />
+
+
+            <EditText
+                android:id="@+id/textMail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edittext_background"
+                android:fontFamily="@font/montserrat"
+                android:hint="@string/campoMail"
+                android:inputType="textPersonName"
+                android:padding="8dp"
+                android:textColorHint="@color/blanco_campos" />
+
+            <EditText
+                android:id="@+id/textDirec"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edittext_background"
+                android:fontFamily="@font/montserrat"
+                android:hint="@string/direccion"
+                android:padding="8dp"
+                android:textColorHint="@color/blanco_campos" />
+
+
+            <TextView
+                android:id="@+id/textViewTipoPedido"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/montserrat"
+                android:padding="5dp"
+                android:text="@string/tipoPedido"
+                android:textColor="@color/blanco_campos" />
+
+
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checkedButton="@id/radioDebito"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/radioEnvio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/montserrat"
+                    android:text="@string/tipoEnvio"
+                    android:textColor="@color/blanco_campos">
+
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioTakeAway"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/montserrat"
+                    android:text="@string/tipoTakeAway"
+                    android:textColor="@color/blanco_campos">
+
+                </RadioButton>
+            </RadioGroup>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dip"
+                android:background="@color/blanco_campos_medium"
+                android:layout_marginTop="15dp"/>
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/montserrat"
+                android:padding="5dp"
+                android:textAlignment="center"
+                android:text="@string/listaPlatos"
+                android:textColor="@color/blanco_campos" />
+
+            <Button
+                android:id="@+id/buttonAgregarPlato"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:text="@string/agregarPlato" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dip"
+                android:background="@color/blanco_campos_medium"
+                android:layout_marginTop="15dp"/>
+
+
+            <Button
+                android:id="@+id/buttonConfirmarPedido"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:text="@string/confirmarPedido" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+
+</LinearLayout>

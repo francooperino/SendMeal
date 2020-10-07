@@ -1,9 +1,12 @@
 package com.example.lab1appmoviles;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.animation.AccelerateInterpolator;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import androidx.appcompat.widget.Toolbar;
@@ -55,8 +58,24 @@ public class PlatoRecyclerActivity extends AppCompatActivity {
             case android.R.id.home:
                 onBackPressed();
                 return true;
+
+            case R.id.opcion1:
+                Intent i = new Intent(PlatoRecyclerActivity.this, PedidoActivity.class);
+                startActivity(i);
+                //Toast.makeText(this,"Click en opcion Registrarme",Toast.LENGTH_LONG).show();
+                break;
+
+
         }
 
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_toolbar_listaplato,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+
 }

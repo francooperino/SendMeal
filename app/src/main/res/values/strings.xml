@@ -19,13 +19,30 @@
     <string name="cargaInicial2">Crédito inicial: </string>
     <string name="terminosYCondiciones">Acepto los términos y condiciones </string>
     <string name="botonRegistro">Registrar</string>
-    <string name="NuevoPlato" > Nuevo Plato </string>
-    <string name="TituloPlato" > Titulo </string>
-    <string name="DescripcionPlato" > Descripcion </string>
-    <string name="CaloriasPlato" > Calorias </string>
-    <string name="PrecioPlato" > Precio </string>
-    <string name="GuardarPlato" > GUARDAR </string>
-    <string name="Registro" > Registro </string>
-    <string name="ListaPlatos" > Lista de Platos </string>
+    <string name="NuevoPlato"> Nuevo Plato </string>
+    <string name="TituloPlato"> Titulo </string>
+    <string name="DescripcionPlato"> Descripcion </string>
+    <string name="CaloriasPlato"> Calorias </string>
+    <string name="PrecioPlato"> Precio </string>
+    <string name="GuardarPlato"> GUARDAR </string>
+    <string name="Registro"> Registro </string>
+    <string name="ListaPlatos"> Lista de Platos </string>
+    <string name="NuevoPedido"> Nuevo Pedido </string>
+    <string name="direccion"> Dirección </string>
+    <string name="tipoPedido"> Tipo de pedido: </string>
+    <string name="tipoEnvio"> Envío </string>
+    <string name="tipoTakeAway"> Takeaway </string>
+    <string name="infoPedido"> Danos tus datos para hacer el pedido! </string>
+    <string name="agregarPlato"> Agregar plato </string>
+    <string name="listaPlatos"> Lista de platos: </string>
+    <string name="confirmarPedido"> Confirmar pedido </string>
+
+
+
+
+
+
+
+
 
 </resources>
