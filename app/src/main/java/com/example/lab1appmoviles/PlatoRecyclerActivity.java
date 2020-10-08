@@ -4,7 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.animation.AccelerateInterpolator;
+import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,8 +22,8 @@ public class PlatoRecyclerActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
+    String valor;
     Toolbar toolbarOpcionPlatos;
-
     DaoPlatos daoPlato;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +32,7 @@ public class PlatoRecyclerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_recycler_plato);
         toolbarOpcionPlatos = findViewById(R.id.toolbarRecycler);
         daoPlato = new DaoPlatos();
+        valor = getIntent().getExtras().getString("habilitar boton pedir");
         setSupportActionBar(toolbarOpcionPlatos);
         //para mostrar icono flecha atrás
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -47,8 +51,9 @@ public class PlatoRecyclerActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         // specify an adapter (see also next example)
-        mAdapter = new PlatoRecyclerAdapter(daoPlato.list(),this);
+        mAdapter = new PlatoRecyclerAdapter(daoPlato.list(),this, valor);
         recyclerView.setAdapter(mAdapter);
+
     }
 
     //para aplicar funcionalidad flecha atrás
@@ -76,6 +81,8 @@ public class PlatoRecyclerActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_toolbar_listaplato,menu);
         return super.onCreateOptionsMenu(menu);
     }
-
+    public String obtenerValor() {
+        return valor;
+    }
 
 }

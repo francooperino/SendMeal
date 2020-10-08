@@ -50,6 +50,7 @@ public class HomeActivity extends AppCompatActivity {
                 break;
             case R.id.opcion3:
                 Intent g = new Intent(HomeActivity.this, PlatoRecyclerActivity.class);
+                g.putExtra("habilitar boton pedir" , "false");
                 startActivity(g);
                 //Toast.makeText(this,"Click en opcion Lista de Items",Toast.LENGTH_LONG).show();
                 break;

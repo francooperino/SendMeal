@@ -40,7 +40,8 @@
                     android:layout_weight="1"
                     android:fontFamily="@font/montserrat"
                     android:gravity="center"
-                    android:textSize="24dp"></TextView>
+                    android:textStyle="bold"
+                    android:textSize="20dp"></TextView>
 
                 <TextView
                     android:id="@+id/PrecioPlato"
@@ -49,7 +50,15 @@
                     android:layout_weight="1"
                     android:fontFamily="@font/montserrat"
                     android:gravity="center"
-                    android:textSize="24dp"></TextView>
+                    android:textSize="20dp"></TextView>
+
+                <Button
+                    android:id="@+id/buttonPedir"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:visibility="invisible"
+                    android:text="Pedir" />
             </LinearLayout>
 
         </LinearLayout>
