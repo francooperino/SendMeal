@@ -49,7 +49,7 @@ public class PedidoActivity extends AppCompatActivity {
             if(resultCode== RESULT_OK){
                 //String serieTitulo = data.getExtras().getString("serie");
                 //Integer indice = data.getExtras().getInt("indiceElegido");
-                platoElegido.setText(data.getExtras().getString("titulo") +"  "+data.getExtras().getString("precio"));
+                platoElegido.setText("Plato elegido: "+data.getExtras().getString("titulo") +",  "+data.getExtras().getString("precio"));
             }
         }
     }

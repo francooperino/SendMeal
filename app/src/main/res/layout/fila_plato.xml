@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        card_view:cardCornerRadius="15dp"
+        card_view:cardCornerRadius="10dp"
         card_view:cardElevation="5dp"
         card_view:cardUseCompatPadding="true">
 
@@ -29,7 +29,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="horizontal">
 
 
@@ -54,11 +54,13 @@
 
                 <Button
                     android:id="@+id/buttonPedir"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.5"
-                    android:visibility="invisible"
-                    android:text="Pedir" />
+                    android:layout_width="0.4in"
+                    android:layout_height="0.16in"
+                    android:layout_weight="0.2"
+                    android:background="@drawable/borde_redondo"
+                    android:textSize="13dp"
+                    android:text="Pedir"
+                    android:visibility="invisible" />
             </LinearLayout>
 
         </LinearLayout>
