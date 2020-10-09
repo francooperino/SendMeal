@@ -83,6 +83,6 @@ public class PlatoRecyclerActivity extends AppCompatActivity {
     }
     public String obtenerValor() {
         return valor;
-    }
+        }
 
 }

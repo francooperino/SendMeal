@@ -4,13 +4,21 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.SystemClock;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class PedidoActivity extends AppCompatActivity {
 
@@ -41,6 +49,17 @@ public class PedidoActivity extends AppCompatActivity {
                 startActivityForResult(i, LAUNCH_SECOND_ACTIVITY);
             }
         });
+
+        btnConfirmarPlato.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                new TaskNotificacion().execute();
+
+
+            }
+        });
+
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -68,5 +87,40 @@ public class PedidoActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
 
     }
+
+
+
+    class TaskNotificacion extends AsyncTask<String, Void, String> {
+                @Override
+                protected String doInBackground(String... params) {
+                    //...
+                    try {
+                        Thread.sleep(5000);
+                    }catch (InterruptedException e){
+                        e.printStackTrace();
+                    }
+
+                    return null;
+
+                    //return params[0];
+                }
+
+                @Override
+                protected void onPostExecute(String result) {
+                    AlarmManager alarmManager;
+
+                    Intent intent = new Intent(PedidoActivity.this, MyNotificationPublisher.class);
+
+                    alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                    PendingIntent pi = PendingIntent.getBroadcast(getApplicationContext(), 0, intent, 0);
+
+                    alarmManager.set(AlarmManager.RTC_WAKEUP, 0, pi);
+
+                }
+
+
+    }
+
+
 
 }
