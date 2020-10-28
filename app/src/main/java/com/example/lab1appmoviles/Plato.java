@@ -1,6 +1,12 @@
 package com.example.lab1appmoviles;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity
 public class Plato {
+    @PrimaryKey(autoGenerate = true)
+    private Long id;
     private String titulo;
     private String descripcion;
     private Integer calorias;
