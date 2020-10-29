@@ -1,5 +1,6 @@
 package com.example.lab1appmoviles;
 
+import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -11,6 +12,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.lab1appmoviles.room.AppRepository;
+
 public class AltaNuevoPlato extends AppCompatActivity {
 
     Toolbar toolbarOpcion2;
@@ -20,6 +23,8 @@ public class AltaNuevoPlato extends AppCompatActivity {
     EditText precio;
     EditText calorias;
     Plato plato;
+    AppRepository appRepository;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

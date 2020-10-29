@@ -16,7 +16,7 @@ public class DaoPlatos {
     private void iniciar(){
         if(platos.isEmpty()){
 
-            platos.add(new Plato("Milanesa", "dgdgdgdg", 56, 92.0));
+            /*platos.add(new Plato("Milanesa", "dgdgdgdg", 56, 92.0));
             platos.add(new Plato("Albondigas", "dgdgdgdg", 56, 56.0));
             platos.add(new Plato("Sushi", "dgdgdgdg", 56, 145.0));
             platos.add(new Plato("Asado", "dgdgdgdg", 56, 200.0));
@@ -28,7 +28,7 @@ public class DaoPlatos {
             platos.add(new Plato("Napolitana", "dgdgdgdg", 56, 180.0));
             platos.add(new Plato("Empanada", "dgdgdgdg", 56, 69.0));
             platos.add(new Plato("Pescado", "dgdgdgdg", 56, 263.0));
-            platos.add(new Plato("Fugazetta", "dgdgdgdg", 56, 300.0));
+            platos.add(new Plato("Fugazetta", "dgdgdgdg", 56, 300.0));*/
         }
     }
 

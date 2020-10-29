@@ -1,22 +1,26 @@
 package com.example.lab1appmoviles;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+
 @Entity
+
 public class Plato {
+
     @PrimaryKey(autoGenerate = true)
     private Long id;
     private String titulo;
     private String descripcion;
     private Integer calorias;
-    private Double Precio;
+    private Double precio;
 
     public Plato(String titulo, String descripcion, Integer calorias, Double precio) {
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.calorias = calorias;
-        Precio = precio;
+        this.precio = precio;
     }
 //getters
     public String getTitulo() {
@@ -32,9 +36,14 @@ public class Plato {
     }
 
     public Double getPrecio() {
-        return Precio;
+        return precio;
     }
-//setters
+
+    public Long getId() {
+        return id;
+    }
+
+    //setters
 
 
     public void setTitulo(String titulo) {
@@ -50,6 +59,10 @@ public class Plato {
     }
 
     public void setPrecio(Double precio) {
-        Precio = precio;
+        this.precio = precio;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
