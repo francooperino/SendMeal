@@ -14,6 +14,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.example.lab1appmoviles.room.AppDatabase;
 import com.example.lab1appmoviles.room.AppRepository;
+import com.example.lab1appmoviles.room.InsertItemsActivity;
 import com.example.lab1appmoviles.room.ListItemsActivity;
 
 public class AltaNuevoPlato extends AppCompatActivity {
@@ -71,10 +72,12 @@ public class AltaNuevoPlato extends AppCompatActivity {
                 }
                 else{
                     plato= new Plato(nombrePlato.getText().toString(),descPlato.getText().toString(),Integer.parseInt(calorias.getText().toString()),Double.parseDouble(precio.getText().toString()));
-                    Toast.makeText(AltaNuevoPlato.this, "Plato Creado",Toast.LENGTH_LONG).show();
+                   // Toast.makeText(AltaNuevoPlato.this, "Plato Creado",Toast.LENGTH_LONG).show();
 
-                    ListItemsActivity lia = new ListItemsActivity();
-                    lia.setPlato(plato);
+                 InsertItemsActivity iia = new InsertItemsActivity();
+                 ListItemsActivity lia = new ListItemsActivity();
+
+                //    lia.setPlato(plato);
 
                     //ACA CREA EL PLATO
                 }

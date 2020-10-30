@@ -22,6 +22,7 @@ public class AppRepository implements OnPlatoResultCallback {
         AppDatabase.databaseWriteExecutor.execute(new Runnable() {
             @Override
             public void run() {
+                Log.d("DEBUG", "INSERTADO");
                 platoDao.insertar(plato);
             }
         });

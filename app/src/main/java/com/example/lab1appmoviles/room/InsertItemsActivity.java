@@ -11,22 +11,23 @@ import com.example.lab1appmoviles.Plato;
 import java.util.List;
 
 
-
-public class ListItemsActivity extends AppCompatActivity implements AppRepository.OnResultCallback {
-    /* ..... */
+public class InsertItemsActivity extends AppCompatActivity implements AppRepository.OnResultCallback {
     AppRepository repository;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         /* ..... */
-       // super.onCreate(savedInstanceState);
+        //super.onCreate(savedInstanceState);
         repository = new AppRepository(this.getApplication(), this);
-        repository.buscarTodos();
+        Plato plato = new Plato("milanesa","abundante",12,88.0);
+
+        repository.insertar(plato);
     }
 
     @Override
     public void onResult(List result) {
         // Vamos a obtener una Lista de items como resultado cuando finalize
-        Toast.makeText(ListItemsActivity.this, "Exito!", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(ListItemsActivity.this, "Exito!", Toast.LENGTH_SHORT).show();
     }
 
 }
