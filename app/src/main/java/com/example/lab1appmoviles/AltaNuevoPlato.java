@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.lab1appmoviles.room.AppDatabase;
 import com.example.lab1appmoviles.room.AppRepository;
 
 public class AltaNuevoPlato extends AppCompatActivity {
@@ -24,7 +25,7 @@ public class AltaNuevoPlato extends AppCompatActivity {
     EditText calorias;
     Plato plato;
     AppRepository appRepository;
-
+    AppRepository.OnResultCallback context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +71,15 @@ public class AltaNuevoPlato extends AppCompatActivity {
                 else{
                     plato= new Plato(nombrePlato.getText().toString(),descPlato.getText().toString(),Integer.parseInt(calorias.getText().toString()),Double.parseDouble(precio.getText().toString()));
                     Toast.makeText(AltaNuevoPlato.this, "Plato Creado",Toast.LENGTH_LONG).show();
+
+
+                    /*context =
+                    Application ap = new Application();
+                    appRepository = new AppRepository(ap,context);
+                    appRepository.insertar(plato);
+                    */
+
+                    //ACA CREA EL PLATO
                 }
 
             }
