@@ -52,6 +52,7 @@
                     android:gravity="center"
                     android:textSize="20dp"></TextView>
 
+
                 <Button
                     android:id="@+id/buttonPedir"
                     android:layout_width="0.4in"
@@ -61,6 +62,26 @@
                     android:textSize="13dp"
                     android:text="Pedir"
                     android:visibility="invisible" />
+
+                <TextView
+                    android:id="@+id/caloriasPlato"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
+                    android:fontFamily="@font/montserrat"
+                    android:gravity="center"
+                    android:visibility="invisible"
+                    android:textSize="20dp"></TextView>
+
+                <TextView
+                    android:id="@+id/descripcionPlato"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
+                    android:fontFamily="@font/montserrat"
+                    android:gravity="center"
+                    android:visibility="invisible"
+                    android:textSize="20dp"></TextView>
             </LinearLayout>
 
         </LinearLayout>

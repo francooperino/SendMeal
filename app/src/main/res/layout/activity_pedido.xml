@@ -121,15 +121,14 @@
                 android:background="@color/blanco_campos_medium"
                 android:layout_marginTop="15dp"/>
 
-            <TextView
-                android:id="@+id/textView2"
+            <ListView
+                android:id="@+id/listView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/montserrat"
                 android:padding="5dp"
                 android:textAlignment="center"
-                android:text="@string/listaPlatos"
                 android:textColor="@color/blanco_campos" />
 
             <Button

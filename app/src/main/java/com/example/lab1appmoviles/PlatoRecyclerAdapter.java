@@ -1,6 +1,7 @@
 package com.example.lab1appmoviles;
 
 import android.content.Intent;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,8 @@ public class PlatoRecyclerAdapter extends RecyclerView.Adapter<PlatoRecyclerAdap
         ImageView imgPlato;
         TextView tituloPlato;
         TextView precioPlato;
+        TextView descPlato;
+        TextView calorias;
         Button btnElegirPlato;
 
         public PlatoViewHolder(View itemView) {
@@ -34,6 +37,8 @@ public class PlatoRecyclerAdapter extends RecyclerView.Adapter<PlatoRecyclerAdap
             tituloPlato=itemView.findViewById(R.id.TituloPlato);
             precioPlato=itemView.findViewById(R.id.PrecioPlato);
             btnElegirPlato = itemView.findViewById(R.id.buttonPedir);
+            calorias= itemView.findViewById(R.id.caloriasPlato);
+            descPlato= itemView.findViewById(R.id.descripcionPlato);
         }
     }
 
@@ -51,6 +56,8 @@ public class PlatoRecyclerAdapter extends RecyclerView.Adapter<PlatoRecyclerAdap
     }
     @Override
     public void onBindViewHolder(final PlatoViewHolder holder, int position) {
+        holder.descPlato.setTag(position);
+        holder.calorias.setTag(position);
         holder.precioPlato.setTag(position);
         holder.tituloPlato.setTag(position);
         Plato plato = mDataset.get(position);
@@ -61,13 +68,14 @@ public class PlatoRecyclerAdapter extends RecyclerView.Adapter<PlatoRecyclerAdap
         if(estadoBtn.equals("true")){
             holder.btnElegirPlato.setVisibility(1);
         }
-
         holder.btnElegirPlato.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent returnIntent = new Intent();
                 returnIntent.putExtra("titulo",holder.tituloPlato.getText().toString());
+                returnIntent.putExtra("descripcion",holder.descPlato.getText().toString());
                 returnIntent.putExtra("precio",holder.precioPlato.getText().toString());
+                returnIntent.putExtra("calorias",holder.calorias.getText().toString());
                 activity.setResult(PedidoActivity.RESULT_OK,returnIntent);
                 activity.finish();
             }

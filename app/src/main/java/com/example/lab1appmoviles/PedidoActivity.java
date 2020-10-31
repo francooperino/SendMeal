@@ -16,16 +16,25 @@ import android.os.SystemClock;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ListIterator;
 
 public class PedidoActivity extends AppCompatActivity {
 
     Toolbar myToolbar;
     Button btnAgregarPlato;
     Button btnConfirmarPlato;
-    TextView platoElegido;
+    //TextView platoElegido;
+    ListView platosElegidos;
+    List<Plato> platito;
+    ArrayAdapter<String> adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,8 +42,9 @@ public class PedidoActivity extends AppCompatActivity {
         myToolbar = findViewById(R.id.toolbarPedido);
         btnAgregarPlato = findViewById(R.id.buttonAgregarPlato);
         btnConfirmarPlato = findViewById(R.id.buttonConfirmarPedido);
-        platoElegido = findViewById(R.id.textView2);
+        platosElegidos = (ListView) findViewById(R.id.listView2);
         setSupportActionBar(myToolbar);
+        platito=new ArrayList<>();
 
         //para mostrar icono flecha atrás
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -61,14 +71,41 @@ public class PedidoActivity extends AppCompatActivity {
         });
 
     }
+
+    public void actualizarListView (String[] arrayPlatos){
+        if(!arrayPlatos[0].isEmpty()){
+            //adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, arrayPlatos);
+            adapter = new ArrayAdapter<String>(this,R.layout.activity_lista_platos,R.id.textView5, arrayPlatos);
+            platosElegidos.setAdapter(adapter);
+        }
+    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode==1){
             if(resultCode== RESULT_OK){
+                String[] arrayPlatos = new String[10];
                 //String serieTitulo = data.getExtras().getString("serie");
                 //Integer indice = data.getExtras().getInt("indiceElegido");
-                platoElegido.setText("Plato elegido: "+data.getExtras().getString("titulo") +",  "+data.getExtras().getString("precio"));
+                /*Plato plato =new Plato(data.getExtras().getString("titulo").toString(),
+                        data.getExtras().getString("descripcion").toString(),
+                        Integer.parseInt(data.getExtras().getString("calorias").toString()),
+                        Double.parseDouble(data.getExtras().getString("precio").toString()),
+                        null);*/
+                Plato plato = new Plato("hola","hola",56,45.9,null);
+                Plato plato2 = new Plato("hola2","hola",56,45.9,null);
+                Plato plato3 = new Plato("hola3","hola",56,45.9,null);
+                platito.add(plato);
+                platito.add(plato2);
+                platito.add(plato3);
+                int cont =0;
+                for(Plato a : platito)
+                {
+                    arrayPlatos[cont]="Titulo: "+a.getTitulo().toString()+"     "+"Precio: $"+a.getPrecio().toString();
+                    cont++;
+                }
+                actualizarListView(arrayPlatos);
+                //platoElegido.setText("Plato elegido: "+data.getExtras().getString("titulo") +",  "+data.getExtras().getString("precio"));
             }
         }
     }

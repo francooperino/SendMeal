@@ -77,7 +77,7 @@ public class AltaNuevoPlato extends AppCompatActivity implements AppRepository.O
                     plato= new Plato(nombrePlato.getText().toString(),descPlato.getText().toString(),Integer.parseInt(calorias.getText().toString()),Double.parseDouble(precio.getText().toString()),null);
                     appRepository.insertar(plato);
                     Toast.makeText(AltaNuevoPlato.this, "Plato Creado",Toast.LENGTH_LONG).show();
-
+                    onBackPressed();
                     //appRepository.buscarTodos();
 
                 //    lia.setPlato(plato);
@@ -111,5 +111,4 @@ public class AltaNuevoPlato extends AppCompatActivity implements AppRepository.O
         //Toast.makeText(AltaNuevoPlato.this, typedList.get(0).getTitulo().toString()+" - "+typedList.get(1).getTitulo().toString(), Toast.LENGTH_SHORT).show();
         Toast.makeText(AltaNuevoPlato.this, typedList.get(0).getTitulo().toString()+" - "+typedList.get(1).getTitulo().toString(), Toast.LENGTH_SHORT).show();
     }
-    
 }

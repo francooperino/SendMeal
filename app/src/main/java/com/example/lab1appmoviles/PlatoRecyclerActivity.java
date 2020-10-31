@@ -29,6 +29,7 @@ public class PlatoRecyclerActivity extends AppCompatActivity implements AppRepos
     Toolbar toolbarOpcionPlatos;
     DaoPlatos daoPlato;
     AppRepository appRepository;
+    List<Plato> listaPlato;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,9 +58,16 @@ public class PlatoRecyclerActivity extends AppCompatActivity implements AppRepos
 
         // specify an adapter (see also next example)
         appRepository.buscarTodos();
-        mAdapter = new PlatoRecyclerAdapter(daoPlato.list(),this, valor);
-        recyclerView.setAdapter(mAdapter);
 
+
+
+
+    }
+    public void actualizarRecycler (List<Plato> platos){
+        if(!platos.isEmpty()){
+            mAdapter = new PlatoRecyclerAdapter(platos,this, valor);
+            recyclerView.setAdapter(mAdapter);
+        }
     }
 
     //para aplicar funcionalidad flecha atrás
@@ -93,6 +101,8 @@ public class PlatoRecyclerActivity extends AppCompatActivity implements AppRepos
 
     @Override
     public void onResult(List result) {
+        List< Plato > typedList = (List<Plato>) result;
+        actualizarRecycler(typedList);
 
     }
 }
