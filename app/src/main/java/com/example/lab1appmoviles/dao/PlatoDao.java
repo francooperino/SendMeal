@@ -27,4 +27,7 @@ public interface PlatoDao {
     @Query("SELECT * FROM plato")
     List<Plato> buscarTodos();
 
+    @Query("DELETE FROM plato")
+    void borrarPlatos();
+
 }

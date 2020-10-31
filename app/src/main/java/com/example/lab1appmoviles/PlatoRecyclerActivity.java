@@ -17,14 +17,18 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.lab1appmoviles.dao.DaoPlatos;
+import com.example.lab1appmoviles.room.AppRepository;
 
-public class PlatoRecyclerActivity extends AppCompatActivity {
+import java.util.List;
+
+public class PlatoRecyclerActivity extends AppCompatActivity implements AppRepository.OnResultCallback{
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
     String valor;
     Toolbar toolbarOpcionPlatos;
     DaoPlatos daoPlato;
+    AppRepository appRepository;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +38,7 @@ public class PlatoRecyclerActivity extends AppCompatActivity {
         daoPlato = new DaoPlatos();
         valor = getIntent().getExtras().getString("habilitar boton pedir");
         setSupportActionBar(toolbarOpcionPlatos);
+        appRepository = new AppRepository(this.getApplication(), this);
         //para mostrar icono flecha atrás
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -51,6 +56,7 @@ public class PlatoRecyclerActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         // specify an adapter (see also next example)
+        appRepository.buscarTodos();
         mAdapter = new PlatoRecyclerAdapter(daoPlato.list(),this, valor);
         recyclerView.setAdapter(mAdapter);
 
@@ -85,4 +91,8 @@ public class PlatoRecyclerActivity extends AppCompatActivity {
         return valor;
         }
 
+    @Override
+    public void onResult(List result) {
+
+    }
 }

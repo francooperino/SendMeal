@@ -1,5 +1,6 @@
 package com.example.lab1appmoviles.room;
 
+import android.app.Application;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
@@ -15,22 +16,50 @@ import com.example.lab1appmoviles.dao.PlatoDao;
 
 import java.util.concurrent.Executor;
 
+
+
+
 @Database(entities = {Plato.class}, version = 1)
-
-
 public abstract class AppDatabase extends RoomDatabase {
-    public static Executor databaseWriteExecutor;
-    private static AppDatabase INSTANCE;
-    public abstract PlatoDao platoDao();
 
-    /* .... */
+    private static AppDatabase INSTANCE;
+    public static Executor databaseWriteExecutor;
+
+
     static AppDatabase getInstance(final Context context) {
 
         if (INSTANCE ==null){
             INSTANCE = Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, "app_database").fallbackToDestructiveMigration().build();
+            databaseWriteExecutor=INSTANCE.getTransactionExecutor();
         }
         return INSTANCE;
 
         //agregado el codigo del ingles
     }
+
+    public abstract PlatoDao platoDao();
+    /* .... */
+    /*static AppDatabase getInstance(final Context context) {
+
+        return INSTANCE;
+    }*/
 }
+
+
+/*public abstract class AppDatabase extends RoomDatabase {
+    public static Executor databaseWriteExecutor;
+    private static AppDatabase INSTANCE;
+    public abstract PlatoDao platoDao();
+
+
+static AppDatabase getInstance(final Context context) {
+
+    if (INSTANCE ==null){
+        INSTANCE = Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, "app_database").fallbackToDestructiveMigration().build();
+    }
+    return INSTANCE;
+
+    //agregado el codigo del ingles
+}
+}
+*/

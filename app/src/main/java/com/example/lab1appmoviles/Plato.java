@@ -16,11 +16,12 @@ public class Plato {
     private Integer calorias;
     private Double precio;
 
-    public Plato(String titulo, String descripcion, Integer calorias, Double precio) {
+    public Plato(String titulo, String descripcion, Integer calorias, Double precio, Long id) {
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.calorias = calorias;
         this.precio = precio;
+        this.id = id;
     }
 //getters
     public String getTitulo() {

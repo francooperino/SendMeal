@@ -3,6 +3,7 @@ package com.example.lab1appmoviles;
 import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -17,7 +18,9 @@ import com.example.lab1appmoviles.room.AppRepository;
 import com.example.lab1appmoviles.room.InsertItemsActivity;
 import com.example.lab1appmoviles.room.ListItemsActivity;
 
-public class AltaNuevoPlato extends AppCompatActivity {
+import java.util.List;
+
+public class AltaNuevoPlato extends AppCompatActivity implements AppRepository.OnResultCallback{
 
     Toolbar toolbarOpcion2;
     Button btnSave;
@@ -27,7 +30,6 @@ public class AltaNuevoPlato extends AppCompatActivity {
     EditText calorias;
     Plato plato;
     AppRepository appRepository;
-    AppRepository.OnResultCallback context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +41,7 @@ public class AltaNuevoPlato extends AppCompatActivity {
         precio= findViewById(R.id.Precio);
         calorias= findViewById(R.id.Calorias);
         setSupportActionBar(toolbarOpcion2);
+        appRepository = new AppRepository(this.getApplication(), this);
 
         //para mostrar icono flecha atrás
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -71,11 +74,11 @@ public class AltaNuevoPlato extends AppCompatActivity {
                     validar=false;
                 }
                 else{
-                    plato= new Plato(nombrePlato.getText().toString(),descPlato.getText().toString(),Integer.parseInt(calorias.getText().toString()),Double.parseDouble(precio.getText().toString()));
-                   // Toast.makeText(AltaNuevoPlato.this, "Plato Creado",Toast.LENGTH_LONG).show();
+                    plato= new Plato(nombrePlato.getText().toString(),descPlato.getText().toString(),Integer.parseInt(calorias.getText().toString()),Double.parseDouble(precio.getText().toString()),null);
+                    appRepository.insertar(plato);
+                    Toast.makeText(AltaNuevoPlato.this, "Plato Creado",Toast.LENGTH_LONG).show();
 
-                 InsertItemsActivity iia = new InsertItemsActivity();
-                 ListItemsActivity lia = new ListItemsActivity();
+                    //appRepository.buscarTodos();
 
                 //    lia.setPlato(plato);
 
@@ -101,5 +104,12 @@ public class AltaNuevoPlato extends AppCompatActivity {
     }
 
 
-
+    @Override
+    public void onResult(List result) {
+        Log.d("DEBUG", "Plato found2");
+        List< Plato > typedList = (List<Plato>) result;
+        //Toast.makeText(AltaNuevoPlato.this, typedList.get(0).getTitulo().toString()+" - "+typedList.get(1).getTitulo().toString(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(AltaNuevoPlato.this, typedList.get(0).getTitulo().toString()+" - "+typedList.get(1).getTitulo().toString(), Toast.LENGTH_SHORT).show();
+    }
+    
 }

@@ -22,8 +22,8 @@ public class AppRepository implements OnPlatoResultCallback {
         AppDatabase.databaseWriteExecutor.execute(new Runnable() {
             @Override
             public void run() {
-                Log.d("DEBUG", "INSERTADO");
                 platoDao.insertar(plato);
+                Log.d("DEBUG", "Plato found");
             }
         });
     }
@@ -46,6 +46,15 @@ public class AppRepository implements OnPlatoResultCallback {
         });
     }
 
+    public void borrarPlatos(){
+        AppDatabase.databaseWriteExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+             platoDao.borrarPlatos();
+            }
+        });
+    }
+
     public void buscar(String id) {
         new BuscarPlatoById(platoDao, this).execute(id);
     }
@@ -59,6 +68,7 @@ public class AppRepository implements OnPlatoResultCallback {
         Log.d("DEBUG", "Plato found");
         callback.onResult(platos);
     }
+
 
     public interface OnResultCallback<T> {
         void onResult(List<T> result);

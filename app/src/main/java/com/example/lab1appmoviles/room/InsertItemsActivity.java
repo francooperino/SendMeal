@@ -19,9 +19,9 @@ public class InsertItemsActivity extends AppCompatActivity implements AppReposit
         /* ..... */
         //super.onCreate(savedInstanceState);
         repository = new AppRepository(this.getApplication(), this);
-        Plato plato = new Plato("milanesa","abundante",12,88.0);
+//        Plato plato = new Plato("milanesa","abundante",12,88.0);
 
-        repository.insertar(plato);
+        //repository.insertar(plato);
     }
 
     @Override
