@@ -11,7 +11,9 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteOpenHelper;
 
+import com.example.lab1appmoviles.Pedido;
 import com.example.lab1appmoviles.Plato;
+import com.example.lab1appmoviles.dao.PedidoDao;
 import com.example.lab1appmoviles.dao.PlatoDao;
 
 import java.util.concurrent.Executor;
@@ -19,7 +21,7 @@ import java.util.concurrent.Executor;
 
 
 
-@Database(entities = {Plato.class}, version = 1)
+@Database(entities = {Plato.class, Pedido.class}, version = 2)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static AppDatabase INSTANCE;
@@ -38,6 +40,7 @@ public abstract class AppDatabase extends RoomDatabase {
     }
 
     public abstract PlatoDao platoDao();
+    public abstract PedidoDao pedidoDao();
     /* .... */
     /*static AppDatabase getInstance(final Context context) {
 

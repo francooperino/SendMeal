@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,7 +33,8 @@ public class PedidoActivity extends AppCompatActivity {
     Button btnAgregarPlato;
     Button btnConfirmarPlato;
     //TextView platoElegido;
-    ListView platosElegidos;
+    //ListView platosElegidos;
+    Spinner platosE;
     List<Plato> platito;
     ArrayAdapter<String> adapter;
     @Override
@@ -42,7 +44,8 @@ public class PedidoActivity extends AppCompatActivity {
         myToolbar = findViewById(R.id.toolbarPedido);
         btnAgregarPlato = findViewById(R.id.buttonAgregarPlato);
         btnConfirmarPlato = findViewById(R.id.buttonConfirmarPedido);
-        platosElegidos = (ListView) findViewById(R.id.listView2);
+        //platosElegidos = (ListView) findViewById(R.id.listView2);
+        platosE = findViewById(R.id.spinnerPedido);
         setSupportActionBar(myToolbar);
         platito=new ArrayList<>();
 
@@ -72,11 +75,11 @@ public class PedidoActivity extends AppCompatActivity {
 
     }
 
-    public void actualizarListView (String[] arrayPlatos){
-        if(!arrayPlatos[0].isEmpty()){
-            //adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, arrayPlatos);
-            adapter = new ArrayAdapter<String>(this,R.layout.activity_lista_platos,R.id.textView5, arrayPlatos);
-            platosElegidos.setAdapter(adapter);
+    public void actualizarListView (ArrayList arrayPlatos){
+        if(!arrayPlatos.isEmpty()){
+            adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, arrayPlatos);
+           // adapter = new ArrayAdapter<String>(this,R.layout.activity_lista_platos,R.id.textView5, arrayPlatos);
+            platosE.setAdapter(adapter);
         }
     }
     @Override
@@ -84,25 +87,25 @@ public class PedidoActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode==1){
             if(resultCode== RESULT_OK){
-                String[] arrayPlatos = new String[10];
+                ArrayList<String> arrayPlatos = new ArrayList<String>();
                 //String serieTitulo = data.getExtras().getString("serie");
                 //Integer indice = data.getExtras().getInt("indiceElegido");
-                /*Plato plato =new Plato(data.getExtras().getString("titulo").toString(),
+                Plato plato =new Plato(data.getExtras().getString("titulo"),
                         data.getExtras().getString("descripcion").toString(),
-                        Integer.parseInt(data.getExtras().getString("calorias").toString()),
-                        Double.parseDouble(data.getExtras().getString("precio").toString()),
-                        null);*/
-                Plato plato = new Plato("hola","hola",56,45.9,null);
+                        Integer.parseInt(data.getExtras().getString("calorias")),
+                        Double.parseDouble(data.getExtras().getString("precio")),
+                        null);
+                /*Plato plato = new Plato("hola","hola",56,45.9,null);
                 Plato plato2 = new Plato("hola2","hola",56,45.9,null);
-                Plato plato3 = new Plato("hola3","hola",56,45.9,null);
+                Plato plato3 = new Plato("hola3","hola",56,45.9,null);*/
                 platito.add(plato);
-                platito.add(plato2);
-                platito.add(plato3);
-                int cont =0;
+                //platito.add(plato2);
+                //platito.add(plato3);
+                //int cont =0;
                 for(Plato a : platito)
                 {
-                    arrayPlatos[cont]="Titulo: "+a.getTitulo().toString()+"     "+"Precio: $"+a.getPrecio().toString();
-                    cont++;
+                    arrayPlatos.add("Titulo: "+a.getTitulo().toString()+"     "+"Precio: $"+a.getPrecio().toString());
+                    //cont++;
                 }
                 actualizarListView(arrayPlatos);
                 //platoElegido.setText("Plato elegido: "+data.getExtras().getString("titulo") +",  "+data.getExtras().getString("precio"));

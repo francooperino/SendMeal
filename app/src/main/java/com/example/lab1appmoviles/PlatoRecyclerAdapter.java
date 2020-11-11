@@ -20,6 +20,7 @@ public class PlatoRecyclerAdapter extends RecyclerView.Adapter<PlatoRecyclerAdap
     private List<Plato> mDataset;
     private AppCompatActivity activity;
     String  estadoBtn;
+    Plato plato;
 
     public class PlatoViewHolder extends RecyclerView.ViewHolder {
         CardView card;
@@ -29,6 +30,7 @@ public class PlatoRecyclerAdapter extends RecyclerView.Adapter<PlatoRecyclerAdap
         TextView descPlato;
         TextView calorias;
         Button btnElegirPlato;
+        TextView etiquetaPrecio;
 
         public PlatoViewHolder(View itemView) {
             super(itemView);
@@ -39,6 +41,7 @@ public class PlatoRecyclerAdapter extends RecyclerView.Adapter<PlatoRecyclerAdap
             btnElegirPlato = itemView.findViewById(R.id.buttonPedir);
             calorias= itemView.findViewById(R.id.caloriasPlato);
             descPlato= itemView.findViewById(R.id.descripcionPlato);
+            etiquetaPrecio=itemView.findViewById(R.id.etiquetaPrecio);
         }
     }
 
@@ -56,15 +59,17 @@ public class PlatoRecyclerAdapter extends RecyclerView.Adapter<PlatoRecyclerAdap
     }
     @Override
     public void onBindViewHolder(final PlatoViewHolder holder, int position) {
+        holder.etiquetaPrecio.setTag(position);
         holder.descPlato.setTag(position);
         holder.calorias.setTag(position);
         holder.precioPlato.setTag(position);
         holder.tituloPlato.setTag(position);
-        Plato plato = mDataset.get(position);
+        plato = mDataset.get(position);
         holder.imgPlato.setImageResource(R.drawable.milanga);
         holder.tituloPlato.setText(plato.getTitulo());
-        holder.precioPlato.setText("Precio: $"+plato.getPrecio().toString());
-
+        holder.precioPlato.setText(plato.getPrecio().toString());
+        holder.descPlato.setText(plato.getDescripcion());
+        holder.calorias.setText(plato.getCalorias().toString());
         if(estadoBtn.equals("true")){
             holder.btnElegirPlato.setVisibility(1);
         }
@@ -76,6 +81,10 @@ public class PlatoRecyclerAdapter extends RecyclerView.Adapter<PlatoRecyclerAdap
                 returnIntent.putExtra("descripcion",holder.descPlato.getText().toString());
                 returnIntent.putExtra("precio",holder.precioPlato.getText().toString());
                 returnIntent.putExtra("calorias",holder.calorias.getText().toString());
+                /*returnIntent.putExtra("titulo", plato.getTitulo());
+                returnIntent.putExtra("descripcion", plato.getDescripcion());
+                returnIntent.putExtra("precio", plato.getPrecio().toString());
+                returnIntent.putExtra("calorias", plato.getCalorias().toString());*/
                 activity.setResult(PedidoActivity.RESULT_OK,returnIntent);
                 activity.finish();
             }

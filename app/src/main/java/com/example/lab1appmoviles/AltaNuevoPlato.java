@@ -1,7 +1,5 @@
 package com.example.lab1appmoviles;
 
-import android.app.Application;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -13,10 +11,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.example.lab1appmoviles.room.AppDatabase;
 import com.example.lab1appmoviles.room.AppRepository;
-import com.example.lab1appmoviles.room.InsertItemsActivity;
-import com.example.lab1appmoviles.room.ListItemsActivity;
 
 import java.util.List;
 

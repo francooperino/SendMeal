@@ -9,9 +9,9 @@ import java.util.List;
 
 public class BuscarPlatoById extends AsyncTask<String, Void, List<Plato>> {
     private PlatoDao dao;
-    private OnPlatoResultCallback callback;
+    private OnObjectResultCallback callback;
 
-    public BuscarPlatoById(PlatoDao platoDao, OnPlatoResultCallback context) {
+    public BuscarPlatoById(PlatoDao platoDao, OnObjectResultCallback context) {
         this.dao = dao;
         this.callback = context;
     }
@@ -25,6 +25,7 @@ public class BuscarPlatoById extends AsyncTask<String, Void, List<Plato>> {
     @Override
     protected void onPostExecute(List<Plato> platos) {
         super.onPostExecute(platos);
-        callback.onResult(platos);
+        List objeto = (List) platos;
+        callback.onResult(objeto);
     }
 }
