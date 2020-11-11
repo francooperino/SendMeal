@@ -21,7 +21,7 @@ import java.util.concurrent.Executor;
 
 
 
-@Database(entities = {Plato.class, Pedido.class}, version = 2)
+@Database(entities = {Plato.class, Pedido.class}, version = 3)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static AppDatabase INSTANCE;

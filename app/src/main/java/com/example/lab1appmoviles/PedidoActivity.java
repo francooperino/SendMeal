@@ -18,16 +18,21 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.lab1appmoviles.room.AppRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 
-public class PedidoActivity extends AppCompatActivity {
+public class PedidoActivity extends AppCompatActivity implements AppRepository.OnResultCallback{
 
     Toolbar myToolbar;
     Button btnAgregarPlato;
@@ -37,6 +42,12 @@ public class PedidoActivity extends AppCompatActivity {
     Spinner platosE;
     List<Plato> platito;
     ArrayAdapter<String> adapter;
+    EditText email;
+    EditText direccion;
+    String seleccion;
+    RadioGroup tipoPedido;
+    Pedido pedido;
+    AppRepository appRepository;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +59,10 @@ public class PedidoActivity extends AppCompatActivity {
         platosE = findViewById(R.id.spinnerPedido);
         setSupportActionBar(myToolbar);
         platito=new ArrayList<>();
-
+        email = findViewById(R.id.textMail);
+        direccion = findViewById(R.id.textDirec);
+        tipoPedido = findViewById(R.id.radioGroup);
+        appRepository = new AppRepository(this.getApplication(), this);
         //para mostrar icono flecha atrás
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -66,7 +80,19 @@ public class PedidoActivity extends AppCompatActivity {
         btnConfirmarPlato.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                int radioButtonID = tipoPedido.getCheckedRadioButtonId();
+                View radioButton = tipoPedido.findViewById(radioButtonID);
+                int idx = tipoPedido.indexOfChild(radioButton);
+                RadioButton r = (RadioButton)  tipoPedido.getChildAt(idx);
+                String selectedtext = r.getText().toString();
+                Double sumaTotal=0.0;
+                for(Plato a : platito)
+                {
+                    sumaTotal +=a.getPrecio();
+                }
+                pedido=new Pedido(null,email.getText().toString(),direccion.getText().toString(),selectedtext,sumaTotal);
+                appRepository.insertar(pedido);
+                appRepository.buscarTodosLosPedidos();
                 new TaskNotificacion().execute();
 
 
@@ -128,6 +154,12 @@ public class PedidoActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onResult(List result) {
+        List< Pedido > typedList = (List<Pedido>) result;
+        //Toast.makeText(AltaNuevoPlato.this, typedList.get(0).getTitulo().toString()+" - "+typedList.get(1).getTitulo().toString(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(PedidoActivity.this, typedList.get(1).getIdPedido().toString()+" - "+typedList.get(1).getEmail().toString(), Toast.LENGTH_SHORT).show();
+    }
 
 
     class TaskNotificacion extends AsyncTask<String, Void, String> {

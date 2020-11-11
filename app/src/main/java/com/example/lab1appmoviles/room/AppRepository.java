@@ -99,6 +99,9 @@ public class AppRepository implements OnObjectResultCallback{
     public void buscarTodos() {
         new BuscarPlatos(platoDao, this).execute();
     }
+    public void buscarTodosLosPedidos() {
+        new BuscarTodosPedidos(pedidoDao, this).execute();
+    }
 
    /* @Override
     public void onResult(List<Plato> platos) {

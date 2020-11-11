@@ -15,6 +15,7 @@ public class Plato {
     private String descripcion;
     private Integer calorias;
     private Double precio;
+    private long pedidoCreatorId;
 
     public Plato(String titulo, String descripcion, Integer calorias, Double precio, Long id) {
         this.titulo = titulo;
@@ -38,6 +39,14 @@ public class Plato {
 
     public Double getPrecio() {
         return precio;
+    }
+
+    public long getPedidoCreatorId() {
+        return pedidoCreatorId;
+    }
+
+    public void setPedidoCreatorId(long pedidoCreatorId) {
+        this.pedidoCreatorId = pedidoCreatorId;
     }
 
     public Long getId() {
