@@ -8,14 +8,19 @@ import androidx.room.Transaction;
 import androidx.room.Update;
 
 import com.example.lab1appmoviles.Pedido;
+import com.example.lab1appmoviles.Plato;
 import com.example.lab1appmoviles.room.PedidoConPlatos;
 
 import java.util.List;
 
 @Dao
 public interface PedidoDao {
+
+    @Transaction
     @Insert
-    void insertar(Pedido pedido);
+    long insertPedido(Pedido pedido);
+    @Insert
+    void insertPlatos(List<Plato> platos);
 
     @Delete
     void borrar(Pedido pedido);
@@ -35,5 +40,7 @@ public interface PedidoDao {
     @Transaction
     @Query("SELECT * FROM pedido")
     public List<PedidoConPlatos> getPedidossWithPlatos();
+
+
 
 }

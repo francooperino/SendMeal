@@ -7,14 +7,15 @@
     android:orientation="vertical"
     android:background="@drawable/gradiente"
     tools:context=".PlatoRecyclerActivity">
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarRecycler"
-        android:layout_width="409dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@null"
-        app:title="@string/ListaPlatos"
         android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme" />
+        android:theme="?attr/actionBarTheme"
+        app:title="@string/ListaPlatos" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerPlato"

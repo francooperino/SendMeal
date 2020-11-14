@@ -27,6 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.lab1appmoviles.room.AppRepository;
+import com.example.lab1appmoviles.room.PedidoConPlatos;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +48,7 @@ public class PedidoActivity extends AppCompatActivity implements AppRepository.O
     String seleccion;
     RadioGroup tipoPedido;
     Pedido pedido;
+    PedidoConPlatos pcp;
     AppRepository appRepository;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,8 +92,10 @@ public class PedidoActivity extends AppCompatActivity implements AppRepository.O
                 {
                     sumaTotal +=a.getPrecio();
                 }
-                pedido=new Pedido(null,email.getText().toString(),direccion.getText().toString(),selectedtext,sumaTotal);
-                appRepository.insertar(pedido);
+
+                pedido= new Pedido(null,email.getText().toString(),direccion.getText().toString(),selectedtext,sumaTotal);
+                pcp = new PedidoConPlatos(pedido,platito);
+                appRepository.insertar(pcp);
                 appRepository.buscarTodosLosPedidos();
                 new TaskNotificacion().execute();
 
@@ -158,7 +162,7 @@ public class PedidoActivity extends AppCompatActivity implements AppRepository.O
     public void onResult(List result) {
         List< Pedido > typedList = (List<Pedido>) result;
         //Toast.makeText(AltaNuevoPlato.this, typedList.get(0).getTitulo().toString()+" - "+typedList.get(1).getTitulo().toString(), Toast.LENGTH_SHORT).show();
-        Toast.makeText(PedidoActivity.this, typedList.get(1).getIdPedido().toString()+" - "+typedList.get(1).getEmail().toString(), Toast.LENGTH_SHORT).show();
+       // Toast.makeText(PedidoActivity.this, typedList.get(1).getIdPedido().toString()+" - "+typedList.get(1).getEmail().toString(), Toast.LENGTH_SHORT).show();
     }
 
 

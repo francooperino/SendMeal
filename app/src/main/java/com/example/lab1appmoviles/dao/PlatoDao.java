@@ -24,8 +24,9 @@ public interface PlatoDao {
     @Query("SELECT * FROM plato WHERE id = :id LIMIT 1")
     Plato buscar(String id);
 
-    @Query("SELECT * FROM plato")
+    @Query("SELECT p.titulo,p.descripcion,p.calorias,p.precio,p.id,p.pedidoCreatorId,p.id_pedido  FROM plato p GROUP BY p.titulo")
     List<Plato> buscarTodos();
+
 
     @Query("DELETE FROM plato")
     void borrarPlatos();

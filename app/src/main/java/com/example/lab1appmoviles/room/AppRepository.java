@@ -13,6 +13,7 @@ import java.util.List;
 public class AppRepository implements OnObjectResultCallback{
     private PlatoDao platoDao;
     private PedidoDao pedidoDao;
+    private PedidoConPlatos pedidoConPlatos;
     private OnResultCallback callback;
     private Plato plato;
     private Pedido pedido;
@@ -34,8 +35,15 @@ public class AppRepository implements OnObjectResultCallback{
                     Log.d("DEBUG", "Plato found");
                 }
                 else{
-                    pedido= (Pedido) objeto;
-                    pedidoDao.insertar(pedido);
+                    pedidoConPlatos = (PedidoConPlatos) objeto;
+                    long identifier = pedidoDao.insertPedido(pedidoConPlatos.pedido);
+
+                    for (Plato plato : pedidoConPlatos.platos) {
+                        plato.setId_pedido(identifier);
+                    }
+                    pedidoDao.insertPlatos(pedidoConPlatos.platos);
+
+
                 }
             }
         });

@@ -1,8 +1,11 @@
 package com.example.lab1appmoviles;
 
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
+
+import static androidx.room.ForeignKey.CASCADE;
 
 
 @Entity
@@ -16,6 +19,21 @@ public class Plato {
     private Integer calorias;
     private Double precio;
     private long pedidoCreatorId;
+    @ForeignKey
+            (entity = Pedido.class,
+                    parentColumns = "idPedido",
+                    childColumns = "id",
+                    onDelete = CASCADE
+            )
+    private long id_pedido;
+
+    public long getId_pedido() {
+        return id_pedido;
+    }
+
+    public void setId_pedido(long id_pedido) {
+        this.id_pedido = id_pedido;
+    }
 
     public Plato(String titulo, String descripcion, Integer calorias, Double precio, Long id) {
         this.titulo = titulo;
