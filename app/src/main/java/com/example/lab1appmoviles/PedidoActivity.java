@@ -26,6 +26,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.lab1appmoviles.dao.PlatoService;
 import com.example.lab1appmoviles.room.AppRepository;
 import com.example.lab1appmoviles.room.PedidoConPlatos;
 
@@ -99,6 +100,27 @@ public class PedidoActivity extends AppCompatActivity implements AppRepository.O
                 appRepository.buscarTodosLosPedidos();
                 new TaskNotificacion().execute();
 
+
+                PlatoService platoService = UtilsRetrofit.getInstance().retrofit.create(PlatoService.class);
+                //ACA SE LLAMARIA AL METODO que necesitariamos
+
+             /*   Call<List<Plato>> callPlatos = platoService.getPlatoList();
+
+                callPlatos.enqueue(
+                        new Callback<List<Plato>>() {
+                            @Override
+                            public void onResponse(Call<List<Plato>> call, Response<List<Plato>> response) {
+                                if (response.code() == 200) {
+                                    Log.d("DEBUG", "Returno Exitoso");
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<List<Plato>> call, Throwable t) {
+                                Log.d("DEBUG", "Returno Fallido");
+                            }
+                        }
+                );*/
 
             }
         });
