@@ -17,10 +17,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 public class PlatoRecyclerAdapter extends RecyclerView.Adapter<PlatoRecyclerAdapter.PlatoViewHolder> {
-    private List<Plato> mDataset;
+    private List<PlatoApi> mDataset;
     private AppCompatActivity activity;
     String  estadoBtn;
-    Plato plato;
+    PlatoApi plato;
 
     public class PlatoViewHolder extends RecyclerView.ViewHolder {
         CardView card;
@@ -31,6 +31,7 @@ public class PlatoRecyclerAdapter extends RecyclerView.Adapter<PlatoRecyclerAdap
         TextView calorias;
         Button btnElegirPlato;
         TextView etiquetaPrecio;
+        TextView idPlato;
 
         public PlatoViewHolder(View itemView) {
             super(itemView);
@@ -42,10 +43,11 @@ public class PlatoRecyclerAdapter extends RecyclerView.Adapter<PlatoRecyclerAdap
             calorias= itemView.findViewById(R.id.caloriasPlato);
             descPlato= itemView.findViewById(R.id.descripcionPlato);
             etiquetaPrecio=itemView.findViewById(R.id.etiquetaPrecio);
+            idPlato = itemView.findViewById(R.id.idPlato);
         }
     }
 
-    public PlatoRecyclerAdapter(List<Plato> list, PlatoRecyclerActivity platoRecyclerActivity, String valor) {
+    public PlatoRecyclerAdapter(List<PlatoApi> list, PlatoRecyclerActivity platoRecyclerActivity, String valor) {
         mDataset = list;
         activity = platoRecyclerActivity;
         estadoBtn = valor;
@@ -70,8 +72,9 @@ public class PlatoRecyclerAdapter extends RecyclerView.Adapter<PlatoRecyclerAdap
         holder.precioPlato.setText(plato.getPrecio().toString());
         holder.descPlato.setText(plato.getDescripcion());
         holder.calorias.setText(plato.getCalorias().toString());
+        holder.idPlato.setText(plato.getId().toString());
         if(estadoBtn.equals("true")){
-            holder.btnElegirPlato.setVisibility(1);
+            holder.btnElegirPlato.setVisibility(View.VISIBLE);
         }
         holder.btnElegirPlato.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,6 +84,7 @@ public class PlatoRecyclerAdapter extends RecyclerView.Adapter<PlatoRecyclerAdap
                 returnIntent.putExtra("descripcion",holder.descPlato.getText().toString());
                 returnIntent.putExtra("precio",holder.precioPlato.getText().toString());
                 returnIntent.putExtra("calorias",holder.calorias.getText().toString());
+                returnIntent.putExtra("id",holder.idPlato.getText().toString());
                 /*returnIntent.putExtra("titulo", plato.getTitulo());
                 returnIntent.putExtra("descripcion", plato.getDescripcion());
                 returnIntent.putExtra("precio", plato.getPrecio().toString());

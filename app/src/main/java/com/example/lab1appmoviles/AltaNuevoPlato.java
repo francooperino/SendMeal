@@ -11,9 +11,21 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.lab1appmoviles.dao.PedidoService;
+import com.example.lab1appmoviles.dao.PlatoService;
 import com.example.lab1appmoviles.room.AppRepository;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.List;
+import java.util.UUID;
+
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AltaNuevoPlato extends AppCompatActivity implements AppRepository.OnResultCallback{
 
@@ -23,7 +35,7 @@ public class AltaNuevoPlato extends AppCompatActivity implements AppRepository.O
     EditText descPlato;
     EditText precio;
     EditText calorias;
-    Plato plato;
+    PlatoApi plato;
     AppRepository appRepository;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,16 +81,62 @@ public class AltaNuevoPlato extends AppCompatActivity implements AppRepository.O
                     validar=false;
                 }
                 else{
-                    plato= new Plato(nombrePlato.getText().toString(),descPlato.getText().toString(),Integer.parseInt(calorias.getText().toString()),Double.parseDouble(precio.getText().toString()),null);
-                    appRepository.insertar(plato);
-                    Toast.makeText(AltaNuevoPlato.this, "Plato Creado",Toast.LENGTH_LONG).show();
+                    //plato= new PlatoApi(nombrePlato.getText().toString(),descPlato.getText().toString(),Integer.parseInt(calorias.getText().toString()),Double.parseDouble(precio.getText().toString()),null);
+                    //appRepository.insertar(plato);
+
+                    PlatoService platoService = UtilsRetrofit.getInstance().retrofit.create(PlatoService.class);
+                    //ACA SE LLAMARIA AL METODO que necesitariamos
+                    JSONObject body = new JSONObject();
+
+                    try {
+                        //TODO: el pedido para ellos tiene varios id de platos, mirar eso
+
+                        body.put("titulo", nombrePlato.getText().toString());
+                        body.put("descripcion",descPlato.getText().toString());
+                        body.put("calorias",Integer.parseInt(calorias.getText().toString()));
+                        body.put("precio",Double.parseDouble(precio.getText().toString()));
+
+
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+
+
+                    RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),body.toString());
+
+
+                    Call<PlatoApi> callPlato = platoService.createPlato(requestBody);
+
+                    callPlato.enqueue(
+                            new Callback<PlatoApi>() {
+                                @Override
+                                public void onResponse(Call<PlatoApi> call, Response<PlatoApi> response) {
+
+                                    if (response.code() == 201) {
+                                        Log.d("DEBUG", "Returno Exitoso");
+                                        Toast.makeText(AltaNuevoPlato.this, "Plato Creado",Toast.LENGTH_LONG).show();
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(Call<PlatoApi> call, Throwable t) {
+                                    Log.d("DEBUG", "Returno Fallido");
+                                    t.printStackTrace();
+                                }
+                            }
+                    );
+                }
+
+
                     onBackPressed();
                     //appRepository.buscarTodos();
 
                 //    lia.setPlato(plato);
 
                     //ACA CREA EL PLATO
-                }
+
 
             }
 

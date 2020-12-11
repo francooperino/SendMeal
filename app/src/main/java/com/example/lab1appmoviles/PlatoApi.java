@@ -1,37 +1,18 @@
 package com.example.lab1appmoviles;
 
-import androidx.room.Entity;
-import androidx.room.ForeignKey;
-import androidx.room.Ignore;
-import androidx.room.PrimaryKey;
 
-import static androidx.room.ForeignKey.CASCADE;
+import java.util.UUID;
+
+public class PlatoApi {
 
 
-@Entity
-
-public class Plato {
-/*
-      Esta clase se utiliza para el guardado en la bd de room,
-      Tenemos otra que se utiliza para traer los datos de la api
-      PlatoApi, creamos dos clases, ya que el identificador de la api se genera como un uuid
-      y no tenemos forma de usar la misma clase para room, ya que no conoce el tipo de dato uuid,
-      y tampoco puede el id ser un string.
-      Lo mismo pasa con pedido, por lo que creamos pedidoApi
- */
-    @PrimaryKey(autoGenerate = true)
-    private Long id;
+    private UUID id;
     private String titulo;
     private String descripcion;
     private Integer calorias;
     private Double precio;
     private long pedidoCreatorId;
-    @ForeignKey
-            (entity = Pedido.class,
-                    parentColumns = "idPedido",
-                    childColumns = "id",
-                    onDelete = CASCADE
-            )
+
     private long id_pedido;
 
     public long getId_pedido() {
@@ -42,7 +23,7 @@ public class Plato {
         this.id_pedido = id_pedido;
     }
 
-    public Plato(String titulo, String descripcion, Integer calorias, Double precio, Long id) {
+    public PlatoApi(String titulo, String descripcion, Integer calorias, Double precio, UUID id) {
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.calorias = calorias;
@@ -74,7 +55,7 @@ public class Plato {
         this.pedidoCreatorId = pedidoCreatorId;
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
@@ -97,7 +78,7 @@ public class Plato {
         this.precio = precio;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 }

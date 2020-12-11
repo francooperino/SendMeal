@@ -26,13 +26,26 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
+import com.example.lab1appmoviles.dao.PedidoService;
 import com.example.lab1appmoviles.dao.PlatoService;
 import com.example.lab1appmoviles.room.AppRepository;
 import com.example.lab1appmoviles.room.PedidoConPlatos;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.UUID;
+
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class PedidoActivity extends AppCompatActivity implements AppRepository.OnResultCallback{
 
@@ -42,7 +55,7 @@ public class PedidoActivity extends AppCompatActivity implements AppRepository.O
     //TextView platoElegido;
     //ListView platosElegidos;
     Spinner platosE;
-    List<Plato> platito;
+    List<PlatoApi> platito;
     ArrayAdapter<String> adapter;
     EditText email;
     EditText direccion;
@@ -89,39 +102,74 @@ public class PedidoActivity extends AppCompatActivity implements AppRepository.O
                 RadioButton r = (RadioButton)  tipoPedido.getChildAt(idx);
                 String selectedtext = r.getText().toString();
                 Double sumaTotal=0.0;
-                for(Plato a : platito)
+                String listaId = "";
+                int i=1;
+                JSONArray jsonArray = new JSONArray();
+                for(PlatoApi a : platito)
                 {
                     sumaTotal +=a.getPrecio();
+                    jsonArray.put(a.getId());
+                    /*if(i<platito.size()){
+                        listaId = listaId +a.getId().toString()+",";
+                    } else {
+                        listaId = listaId + a.getId().toString();
+                    }
+                    i++;*/
                 }
 
-                pedido= new Pedido(null,email.getText().toString(),direccion.getText().toString(),selectedtext,sumaTotal);
-                pcp = new PedidoConPlatos(pedido,platito);
-                appRepository.insertar(pcp);
-                appRepository.buscarTodosLosPedidos();
-                new TaskNotificacion().execute();
+                //pedido= new Pedido(null,email.getText().toString(),direccion.getText().toString(),selectedtext,sumaTotal);
+                //pcp = new PedidoConPlatos(pedido,platito);
+                //appRepository.insertar(pcp);
+                //appRepository.buscarTodosLosPedidos();
+                //new TaskNotificacion().execute();
 
 
-                PlatoService platoService = UtilsRetrofit.getInstance().retrofit.create(PlatoService.class);
+             PedidoService pedidoService = UtilsRetrofit.getInstance().retrofit.create(PedidoService.class);
                 //ACA SE LLAMARIA AL METODO que necesitariamos
+                JSONObject body = new JSONObject();
 
-             /*   Call<List<Plato>> callPlatos = platoService.getPlatoList();
+                try {
+                    //TODO: el pedido para ellos tiene varios id de platos, mirar eso
 
-                callPlatos.enqueue(
-                        new Callback<List<Plato>>() {
+
+
+                    body.put("platosId", jsonArray);
+                    body.put("email",email.getText());
+                    body.put("direccion",direccion.getText());
+                    body.put("tipoPedido",selectedtext);
+                    body.put("precio",sumaTotal);
+
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+
+                RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),body.toString());
+
+
+                Call<PedidoApi> callPedido = pedidoService.createPedido(requestBody);
+
+                callPedido.enqueue(
+                        new Callback<PedidoApi>() {
                             @Override
-                            public void onResponse(Call<List<Plato>> call, Response<List<Plato>> response) {
-                                if (response.code() == 200) {
+                            public void onResponse(Call<PedidoApi> call, Response<PedidoApi> response) {
+
+                                if (response.code() == 201) {
                                     Log.d("DEBUG", "Returno Exitoso");
+                                    new TaskNotificacion().execute();
                                 }
                             }
 
                             @Override
-                            public void onFailure(Call<List<Plato>> call, Throwable t) {
+                            public void onFailure(Call<PedidoApi> call, Throwable t) {
                                 Log.d("DEBUG", "Returno Fallido");
+                                t.printStackTrace();
                             }
                         }
-                );*/
-
+                );
             }
         });
 
@@ -142,11 +190,12 @@ public class PedidoActivity extends AppCompatActivity implements AppRepository.O
                 ArrayList<String> arrayPlatos = new ArrayList<String>();
                 //String serieTitulo = data.getExtras().getString("serie");
                 //Integer indice = data.getExtras().getInt("indiceElegido");
-                Plato plato =new Plato(data.getExtras().getString("titulo"),
+                PlatoApi plato =new PlatoApi(data.getExtras().getString("titulo"),
                         data.getExtras().getString("descripcion").toString(),
                         Integer.parseInt(data.getExtras().getString("calorias")),
                         Double.parseDouble(data.getExtras().getString("precio")),
                         null);
+                plato.setId(UUID.fromString(data.getExtras().getString("id")));
                 /*Plato plato = new Plato("hola","hola",56,45.9,null);
                 Plato plato2 = new Plato("hola2","hola",56,45.9,null);
                 Plato plato3 = new Plato("hola3","hola",56,45.9,null);*/
@@ -154,7 +203,7 @@ public class PedidoActivity extends AppCompatActivity implements AppRepository.O
                 //platito.add(plato2);
                 //platito.add(plato3);
                 //int cont =0;
-                for(Plato a : platito)
+                for(PlatoApi a : platito)
                 {
                     arrayPlatos.add("Titulo: "+a.getTitulo().toString()+"     "+"Precio: $"+a.getPrecio().toString());
                     //cont++;
@@ -213,6 +262,11 @@ public class PedidoActivity extends AppCompatActivity implements AppRepository.O
                     PendingIntent pi = PendingIntent.getBroadcast(getApplicationContext(), 0, intent, 0);
 
                     alarmManager.set(AlarmManager.RTC_WAKEUP, 0, pi);
+                    /*int LAUNCH_SECOND_ACTIVITY = 1;
+                    Intent i = new Intent(PedidoActivity.this, PlatoRecyclerActivity.class);
+                    i.putExtra("habilitar boton pedir" , "false");
+                    startActivityForResult(i, LAUNCH_SECOND_ACTIVITY);*/
+                    onBackPressed();
 
                 }
 

@@ -2,6 +2,7 @@ package com.example.lab1appmoviles;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,9 +18,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.lab1appmoviles.dao.DaoPlatos;
+import com.example.lab1appmoviles.dao.PlatoService;
 import com.example.lab1appmoviles.room.AppRepository;
 
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class PlatoRecyclerActivity extends AppCompatActivity implements AppRepository.OnResultCallback{
     private RecyclerView recyclerView;
@@ -39,7 +45,7 @@ public class PlatoRecyclerActivity extends AppCompatActivity implements AppRepos
         daoPlato = new DaoPlatos();
         valor = getIntent().getExtras().getString("habilitar boton pedir");
         setSupportActionBar(toolbarOpcionPlatos);
-        appRepository = new AppRepository(this.getApplication(), this);
+
         //para mostrar icono flecha atrás
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -56,14 +62,43 @@ public class PlatoRecyclerActivity extends AppCompatActivity implements AppRepos
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        // specify an adapter (see also next example)
-        appRepository.buscarTodos();
 
 
+
+        //Descomentar estas dos lineas para obtener los platos desde sqlite
+         //appRepository = new AppRepository(this.getApplication(), this);
+         //appRepository.buscarTodos();
+
+
+
+
+        //ACA se obtiene la lista de platos desde API-REST
+        PlatoService platoService = UtilsRetrofit.getInstance().retrofit.create(PlatoService.class);
+        Call<List<PlatoApi>> callPlatos = platoService.getPlatoList();
+
+        callPlatos.enqueue(
+                new Callback<List<PlatoApi>>() {
+                    @Override
+                    public void onResponse(Call<List<PlatoApi>> call, Response<List<PlatoApi>> response) {
+
+                        if (response.code() == 200) {
+                            Log.d("DEBUG", "Returno Exitoso");
+                            List< PlatoApi > typedList = (List<PlatoApi>) response.body();
+                            actualizarRecycler(typedList);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<PlatoApi>> call, Throwable t) {
+                        Log.d("DEBUG", "Returno Fallido");
+                        t.printStackTrace();
+                    }
+                }
+        );
 
 
     }
-    public void actualizarRecycler (List<Plato> platos){
+    public void actualizarRecycler (List<PlatoApi> platos){
         if(!platos.isEmpty()){
             mAdapter = new PlatoRecyclerAdapter(platos,this, valor);
             recyclerView.setAdapter(mAdapter);
@@ -101,7 +136,7 @@ public class PlatoRecyclerActivity extends AppCompatActivity implements AppRepos
 
     @Override
     public void onResult(List result) {
-        List< Plato > typedList = (List<Plato>) result;
+        List< PlatoApi > typedList = (List<PlatoApi>) result;
         actualizarRecycler(typedList);
 
     }
