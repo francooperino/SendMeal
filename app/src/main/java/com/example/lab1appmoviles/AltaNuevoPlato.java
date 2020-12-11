@@ -95,7 +95,9 @@ public class AltaNuevoPlato extends AppCompatActivity implements AppRepository.O
                         body.put("descripcion",descPlato.getText().toString());
                         body.put("calorias",Integer.parseInt(calorias.getText().toString()));
                         body.put("precio",Double.parseDouble(precio.getText().toString()));
+                        /*
 
+                         */
 
 
                     } catch (JSONException e) {
