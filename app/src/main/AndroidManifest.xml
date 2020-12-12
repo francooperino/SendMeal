@@ -16,12 +16,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PedidoActivity"></activity>
+        <activity android:name=".PedidoActivity"/>
         <activity android:name=".MainActivity" />
         <activity android:name=".AltaNuevoPlato" />
         <activity android:name=".PlatoRecyclerActivity" />
         <activity android:name=".Maps.MapActivity"/>
         <activity android:name=".HomeActivity">
+
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

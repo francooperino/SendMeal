@@ -16,7 +16,6 @@
         android:minHeight="?attr/actionBarSize"
         android:nestedScrollingEnabled="false"
         android:theme="?attr/actionBarTheme"
-
         app:title="SendMeal" />
 
     <ImageView

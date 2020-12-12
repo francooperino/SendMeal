@@ -228,7 +228,9 @@ public class PedidoActivity extends AppCompatActivity implements AppRepository.O
             }
             case 2: {
                 if (resultCode == RESULT_OK) {
-                    Toast.makeText(this, "lat:" + ((LatLng) data.getExtras().get("LatLong")).latitude + " Long: " + ((LatLng) data.getExtras().get("LatLong")).longitude, Toast.LENGTH_LONG).show();
+                    //Toast.makeText(this, "lat:" + ((LatLng) data.getExtras().get("LatLong")).latitude + " Long: " + ((LatLng) data.getExtras().get("LatLong")).longitude, Toast.LENGTH_LONG).show();
+                    //Toast.makeText(this, (String) data.getExtras().get("direccion"), Toast.LENGTH_LONG).show();
+                    direccion.setText((String) data.getExtras().get("direccion"));
                 }
                 break;
             }

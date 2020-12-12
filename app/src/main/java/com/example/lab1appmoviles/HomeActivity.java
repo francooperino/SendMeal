@@ -2,6 +2,7 @@ package com.example.lab1appmoviles;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,20 +14,47 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 
 public class HomeActivity extends AppCompatActivity {
 
+
     Toolbar myToolbar;
+    private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         myToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
+        mAuth = FirebaseAuth.getInstance();
+        // Iniciar Session como usuario anónimo
+        mAuth.signInAnonymously();
 
+    }
 
+    private void signInAnonymously() {
+        mAuth.signInAnonymously()
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Exito
+                            Log.d("Firebase", "signInAnonymously:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                        } else {
+                            // Error
+                            Log.w("Firebase", "signInAnonymously:failure", task.getException());
+                            Toast.makeText(HomeActivity.this, "Authentication failed.",
+                                   Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 
     @Override

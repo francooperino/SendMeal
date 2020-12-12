@@ -70,7 +70,8 @@
                 <EditText
                     android:id="@+id/textDirec"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:maxWidth="30dp"
                     android:layout_marginTop="10dp"
                     android:layout_weight="7"
                     android:background="@drawable/edittext_background"
@@ -83,9 +84,11 @@
                     android:id="@+id/buttonMapa"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:layout_weight="1"
-                    android:foreground="@android:drawable/ic_dialog_map"
+                    android:layout_weight="0.5"
+                    android:background="@null"
+                    android:foreground="@drawable/mapa2"
                     android:padding="8dp"
                     android:text="Button" />
             </LinearLayout>
