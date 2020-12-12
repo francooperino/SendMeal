@@ -37,6 +37,8 @@
     <string name="listaPlatos"> Lista de platos: </string>
     <string name="confirmarPedido"> Confirmar pedido </string>
     <string name="pedidos"> Platos seleccionados </string>
+    <string name="BotonUbicacion">Confirmar ubicacion</string>
+    <string name="google_maps_key">AIzaSyD6unyo5s6jp67_9_E6Y6pod60IqJW4mws</string>
 
 
 

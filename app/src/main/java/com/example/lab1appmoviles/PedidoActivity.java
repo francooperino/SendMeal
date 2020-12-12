@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -27,10 +28,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.example.lab1appmoviles.Maps.MapActivity;
 import com.example.lab1appmoviles.dao.PedidoService;
 import com.example.lab1appmoviles.dao.PlatoService;
 import com.example.lab1appmoviles.room.AppRepository;
 import com.example.lab1appmoviles.room.PedidoConPlatos;
+import com.google.android.gms.maps.model.LatLng;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -64,6 +67,7 @@ public class PedidoActivity extends AppCompatActivity implements AppRepository.O
     Pedido pedido;
     PedidoConPlatos pcp;
     AppRepository appRepository;
+    ImageButton mapButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +82,7 @@ public class PedidoActivity extends AppCompatActivity implements AppRepository.O
         email = findViewById(R.id.textMail);
         direccion = findViewById(R.id.textDirec);
         tipoPedido = findViewById(R.id.radioGroup);
+        mapButton = findViewById(R.id.buttonMapa);
         appRepository = new AppRepository(this.getApplication(), this);
         //para mostrar icono flecha atrás
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -92,7 +97,15 @@ public class PedidoActivity extends AppCompatActivity implements AppRepository.O
                 startActivityForResult(i, LAUNCH_SECOND_ACTIVITY);
             }
         });
-
+        mapButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int LAUNCH_SECOND_ACTIVITY = 2;
+                Intent i = new Intent(PedidoActivity.this, MapActivity.class);
+               // i.putExtra("habilitar boton pedir" , "true");
+                startActivityForResult(i, LAUNCH_SECOND_ACTIVITY);
+            }
+        });
         btnConfirmarPlato.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -185,34 +198,42 @@ public class PedidoActivity extends AppCompatActivity implements AppRepository.O
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==1){
-            if(resultCode== RESULT_OK){
-                ArrayList<String> arrayPlatos = new ArrayList<String>();
-                //String serieTitulo = data.getExtras().getString("serie");
-                //Integer indice = data.getExtras().getInt("indiceElegido");
-                PlatoApi plato =new PlatoApi(data.getExtras().getString("titulo"),
-                        data.getExtras().getString("descripcion").toString(),
-                        Integer.parseInt(data.getExtras().getString("calorias")),
-                        Double.parseDouble(data.getExtras().getString("precio")),
-                        null);
-                plato.setId(UUID.fromString(data.getExtras().getString("id")));
+        switch(requestCode) {
+            case 1: {
+                if (resultCode == RESULT_OK) {
+                    ArrayList<String> arrayPlatos = new ArrayList<String>();
+                    //String serieTitulo = data.getExtras().getString("serie");
+                    //Integer indice = data.getExtras().getInt("indiceElegido");
+                    PlatoApi plato = new PlatoApi(data.getExtras().getString("titulo"),
+                            data.getExtras().getString("descripcion").toString(),
+                            Integer.parseInt(data.getExtras().getString("calorias")),
+                            Double.parseDouble(data.getExtras().getString("precio")),
+                            null);
+                    plato.setId(UUID.fromString(data.getExtras().getString("id")));
                 /*Plato plato = new Plato("hola","hola",56,45.9,null);
                 Plato plato2 = new Plato("hola2","hola",56,45.9,null);
                 Plato plato3 = new Plato("hola3","hola",56,45.9,null);*/
-                platito.add(plato);
-                //platito.add(plato2);
-                //platito.add(plato3);
-                //int cont =0;
-                for(PlatoApi a : platito)
-                {
-                    arrayPlatos.add("Titulo: "+a.getTitulo().toString()+"     "+"Precio: $"+a.getPrecio().toString());
-                    //cont++;
+                    platito.add(plato);
+                    //platito.add(plato2);
+                    //platito.add(plato3);
+                    //int cont =0;
+                    for (PlatoApi a : platito) {
+                        arrayPlatos.add("Titulo: " + a.getTitulo().toString() + "     " + "Precio: $" + a.getPrecio().toString());
+                        //cont++;
+                    }
+                    actualizarListView(arrayPlatos);
+                    //platoElegido.setText("Plato elegido: "+data.getExtras().getString("titulo") +",  "+data.getExtras().getString("precio"));
                 }
-                actualizarListView(arrayPlatos);
-                //platoElegido.setText("Plato elegido: "+data.getExtras().getString("titulo") +",  "+data.getExtras().getString("precio"));
+                break;
             }
-        }
-    }
+            case 2: {
+                if (resultCode == RESULT_OK) {
+                    Toast.makeText(this, "lat:" + ((LatLng) data.getExtras().get("LatLong")).latitude + " Long: " + ((LatLng) data.getExtras().get("LatLong")).longitude, Toast.LENGTH_LONG).show();
+                }
+                break;
+            }
+        }}
+
 
     //para aplicar funcionalidad flecha atrás
     @Override

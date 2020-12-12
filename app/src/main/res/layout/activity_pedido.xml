@@ -62,16 +62,33 @@
                 android:padding="8dp"
                 android:textColorHint="@color/blanco_campos" />
 
-            <EditText
-                android:id="@+id/textDirec"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/edittext_background"
-                android:fontFamily="@font/montserrat"
-                android:hint="@string/direccion"
-                android:padding="8dp"
-                android:textColorHint="@color/blanco_campos" />
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/textDirec"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="7"
+                    android:background="@drawable/edittext_background"
+                    android:fontFamily="@font/montserrat"
+                    android:hint="@string/direccion"
+                    android:padding="8dp"
+                    android:textColorHint="@color/blanco_campos" />
+
+                <ImageButton
+                    android:id="@+id/buttonMapa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:foreground="@android:drawable/ic_dialog_map"
+                    android:padding="8dp"
+                    android:text="Button" />
+            </LinearLayout>
 
 
             <TextView
