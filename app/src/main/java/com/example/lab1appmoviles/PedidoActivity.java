@@ -219,7 +219,7 @@ public class PedidoActivity extends AppCompatActivity implements AppRepository.O
                         //cont++;
                     }
                     actualizarListView(arrayPlatos);
-                    //platoElegido.setText("Plato elegido: "+data.getExtras().getString("titulo") +",  "+data.getExtras().getString("precio"));
+                    
                 }
                 break;
             }
