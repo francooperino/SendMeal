@@ -7,7 +7,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class UtilsRetrofit {
-private String urlApiRest = "http://192.168.0.252:3001/";
+private String urlApiRest = "http://192.168.0.32:3001/";
 private static UtilsRetrofit _INSTANCE;
 public Retrofit retrofit;
    static UtilsRetrofit getInstance(){

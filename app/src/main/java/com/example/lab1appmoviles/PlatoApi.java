@@ -1,6 +1,8 @@
 package com.example.lab1appmoviles;
 
 
+import android.net.Uri;
+
 import java.util.UUID;
 
 public class PlatoApi {
@@ -12,7 +14,6 @@ public class PlatoApi {
     private Integer calorias;
     private Double precio;
     private long pedidoCreatorId;
-
     private long id_pedido;
 
     public long getId_pedido() {

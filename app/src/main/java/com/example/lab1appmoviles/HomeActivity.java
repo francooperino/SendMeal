@@ -37,7 +37,6 @@ public class HomeActivity extends AppCompatActivity {
         mAuth.signInAnonymously();
 
     }
-
     private void signInAnonymously() {
         mAuth.signInAnonymously()
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {

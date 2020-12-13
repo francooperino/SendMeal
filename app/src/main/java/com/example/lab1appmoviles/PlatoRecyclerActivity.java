@@ -1,5 +1,6 @@
 package com.example.lab1appmoviles;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -36,11 +37,13 @@ public class PlatoRecyclerActivity extends AppCompatActivity implements AppRepos
     DaoPlatos daoPlato;
     AppRepository appRepository;
     List<Plato> listaPlato;
+    private static Context mContext;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         toolbarOpcionPlatos = findViewById(R.id.toolbarRecycler);
         setContentView(R.layout.activity_recycler_plato);
+        mContext = this;
         toolbarOpcionPlatos = findViewById(R.id.toolbarRecycler);
         daoPlato = new DaoPlatos();
         valor = getIntent().getExtras().getString("habilitar boton pedir");
@@ -100,7 +103,7 @@ public class PlatoRecyclerActivity extends AppCompatActivity implements AppRepos
     }
     public void actualizarRecycler (List<PlatoApi> platos){
         if(!platos.isEmpty()){
-            mAdapter = new PlatoRecyclerAdapter(platos,this, valor);
+            mAdapter = new PlatoRecyclerAdapter(platos,this, valor,mContext);
             recyclerView.setAdapter(mAdapter);
         }
     }
