@@ -37,7 +37,7 @@ public class PlatoRecyclerAdapter extends RecyclerView.Adapter<PlatoRecyclerAdap
     String  estadoBtn;
     PlatoApi plato;
     private static Context mContext;
-    private Bitmap[] result;
+
 
     public class PlatoViewHolder extends RecyclerView.ViewHolder {
         CardView card;
@@ -61,47 +61,10 @@ public class PlatoRecyclerAdapter extends RecyclerView.Adapter<PlatoRecyclerAdap
             etiquetaPrecio=itemView.findViewById(R.id.etiquetaPrecio);
             idPlato = itemView.findViewById(R.id.idPlato);
         }
+
     }
 
-    private void obtenerImagenPlato(UUID id) {
-        //result = new Bitmap[1];
-        // Creamos una referencia al storage con la Uri de la img
-        FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference storageRef = storage.getReference();
-        //StorageReference gsReference = storage.getReferenceFromUrl("images/"+id.toString()+".jpg");
-        StorageReference platosImagesRef = storageRef.child("/images/"+id.toString()+".jpg");
-        ///ea6f753e-5f77-465c-ab3e-ffda6dbe763a.jpg
-        final long THREE_MEGABYTE = 3 * 1024 * 1024;
-        platosImagesRef.getBytes(THREE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-            @Override
-            public void onSuccess(byte[] bytes) {
-                // Exito
-                setearResultado(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
-                //result = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
 
-                /*DisplayMetrics dm = new DisplayMetrics();
-                getWindowManager().getDefaultDisplay().getMetrics(dm);
-
-                imgPlato.setMinimumHeight(dm.heightPixels);
-                imageView.setMinimumWidth(dm.widthPixels);
-                imageView.setImageBitmap(bm);*/
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception exception) {
-                //result[0] = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.milanga);
-                Drawable myDrawable = mContext.getResources().getDrawable(R.drawable.milanga);
-                //result   = ((BitmapDrawable) myDrawable).getBitmap();
-
-            }
-        });
-        //return result;
-    }
-
-    private void setearResultado(Bitmap decodeByteArray) {
-        result=new Bitmap[1];
-        result[0]=decodeByteArray;
-    }
 
     public PlatoRecyclerAdapter(List<PlatoApi> list, PlatoRecyclerActivity platoRecyclerActivity, String valor, Context ctx) {
         mDataset = list;
@@ -128,9 +91,27 @@ public class PlatoRecyclerAdapter extends RecyclerView.Adapter<PlatoRecyclerAdap
         ((Activity) mContext).getWindowManager().getDefaultDisplay().getMetrics(dm);
         holder.imgPlato.setMinimumHeight(dm.heightPixels);
         holder.imgPlato.setMinimumWidth(dm.widthPixels);
-        obtenerImagenPlato(plato.getId());
-        holder.imgPlato.setImageBitmap(result[0]);
-        //holder.imgPlato.setImageResource(R.drawable.milanga);
+
+        // Creamos una referencia al storage con la Uri de la img
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storageRef = storage.getReference();
+
+        StorageReference platosImagesRef = storageRef.child("/images/"+plato.getId().toString()+".jpg");
+
+        final long THREE_MEGABYTE = 3 * 1024 * 1024;
+        platosImagesRef.getBytes(THREE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+
+            @Override
+            public void onSuccess(byte[] bytes) {
+                holder.imgPlato.setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                holder.imgPlato.setImageBitmap(BitmapFactory.decodeResource(mContext.getResources(), R.drawable.milanga));
+            }
+        });
+
         holder.tituloPlato.setText(plato.getTitulo());
         holder.precioPlato.setText(plato.getPrecio().toString());
         holder.descPlato.setText(plato.getDescripcion());
@@ -148,10 +129,7 @@ public class PlatoRecyclerAdapter extends RecyclerView.Adapter<PlatoRecyclerAdap
                 returnIntent.putExtra("precio",holder.precioPlato.getText().toString());
                 returnIntent.putExtra("calorias",holder.calorias.getText().toString());
                 returnIntent.putExtra("id",holder.idPlato.getText().toString());
-                /*returnIntent.putExtra("titulo", plato.getTitulo());
-                returnIntent.putExtra("descripcion", plato.getDescripcion());
-                returnIntent.putExtra("precio", plato.getPrecio().toString());
-                returnIntent.putExtra("calorias", plato.getCalorias().toString());*/
+
                 activity.setResult(PedidoActivity.RESULT_OK,returnIntent);
                 activity.finish();
             }
