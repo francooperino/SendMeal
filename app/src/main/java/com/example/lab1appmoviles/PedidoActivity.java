@@ -210,9 +210,6 @@ public class PedidoActivity extends AppCompatActivity implements AppRepository.O
                             Double.parseDouble(data.getExtras().getString("precio")),
                             null);
                     plato.setId(UUID.fromString(data.getExtras().getString("id")));
-                /*Plato plato = new Plato("hola","hola",56,45.9,null);
-                Plato plato2 = new Plato("hola2","hola",56,45.9,null);
-                Plato plato3 = new Plato("hola3","hola",56,45.9,null);*/
                     platito.add(plato);
                     //platito.add(plato2);
                     //platito.add(plato3);
@@ -228,8 +225,6 @@ public class PedidoActivity extends AppCompatActivity implements AppRepository.O
             }
             case 2: {
                 if (resultCode == RESULT_OK) {
-                    //Toast.makeText(this, "lat:" + ((LatLng) data.getExtras().get("LatLong")).latitude + " Long: " + ((LatLng) data.getExtras().get("LatLong")).longitude, Toast.LENGTH_LONG).show();
-                    //Toast.makeText(this, (String) data.getExtras().get("direccion"), Toast.LENGTH_LONG).show();
                     direccion.setText((String) data.getExtras().get("direccion"));
                 }
                 break;
@@ -265,7 +260,7 @@ public class PedidoActivity extends AppCompatActivity implements AppRepository.O
                 protected String doInBackground(String... params) {
                     //...
                     try {
-                        Thread.sleep(5000);
+                        Thread.sleep(2000);
                     }catch (InterruptedException e){
                         e.printStackTrace();
                     }
